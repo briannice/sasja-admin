@@ -1,5 +1,5 @@
 import React from 'react'
 
 export default function Sidebar() {
-  return <aside>aside</aside>
+  return <aside className="rounded-lg bg-white shadow">aside</aside>
 }

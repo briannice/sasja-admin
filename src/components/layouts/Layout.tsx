@@ -8,10 +8,10 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <div>
+    <div className="grid h-screen grid-cols-layout grid-rows-layout gap-4 bg-light p-4">
       <Header />
       <Sidebar />
-      <main>{children}</main>
+      <main className="rounded-lg bg-white p-8 shadow">{children}</main>
     </div>
   )
 }

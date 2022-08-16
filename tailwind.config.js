@@ -37,7 +37,14 @@ module.exports = {
       kanit: "'Kanit', sans-serif",
       lato: "'Lato', sans-serif",
     },
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        layout: '360px 1fr',
+      },
+      gridTemplateRows: {
+        layout: '75px 1fr',
+      },
+    },
   },
   plugins: [],
 }
