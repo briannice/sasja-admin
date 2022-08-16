@@ -39,7 +39,7 @@ module.exports = {
     },
     extend: {
       gridTemplateColumns: {
-        layout: '360px 1fr',
+        layout: '300px 1fr',
       },
       gridTemplateRows: {
         layout: '75px 1fr',

@@ -1,9 +1,9 @@
+import Layout from '@/components/layout/Layout'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import React from 'react'
-import Layout from '~/components/layout/Layout'
 
-import '~/styles/main.css'
+import '@/styles/main.css'
 
 type NextPageWithLayout = NextPage & {
   Layout: string | undefined

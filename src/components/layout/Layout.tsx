@@ -1,6 +1,6 @@
+import Header from '@/components/layout/Header'
+import Sidebar from '@/components/layout/Sidebar'
 import React, { ReactNode } from 'react'
-import Header from '~/components/layout/Header'
-import Sidebar from '~/components/layout/Sidebar'
 
 type Props = {
   children: ReactNode
