@@ -1,8 +1,28 @@
-import type { AppProps } from 'next/app'
+import { NextPage } from 'next'
+import { AppProps } from 'next/app'
 import React from 'react'
+import Layout from '~/components/layouts/Layout'
 
 import '~/styles/main.css'
 
-export default function App({ Component, pageProps }: AppProps) {
+type NextPageWithLayout = NextPage & {
+  Layout: string | undefined
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+const App = ({ Component, pageProps }: AppPropsWithLayout) => {
+  if (Component.Layout === 'root') {
+    return (
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    )
+  }
+
   return <Component {...pageProps} />
 }
+
+export default App
