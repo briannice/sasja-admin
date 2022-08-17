@@ -40,7 +40,7 @@ export default function Sidebar() {
                 <Link
                   href={link.url}
                   className={clsx(
-                    'flex items-center space-x-4 rounded-lg border px-4 py-2',
+                    'flex items-center space-x-4 rounded-lg border-2 px-4 py-2',
                     isSelected
                       ? 'border-primary bg-primary'
                       : 'border-white group-hover:border-primary'

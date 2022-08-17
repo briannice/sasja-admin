@@ -16,4 +16,8 @@
   h6 {
     @apply font-kanit;
   }
+
+  a {
+    @apply border-2 border-transparent focus:border-primary focus:outline-none;
+  }
 }
