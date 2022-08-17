@@ -1,4 +1,5 @@
 import DateInput from '@/components/form/DateInput'
+import DateTimeInput from '@/components/form/DateTimeInput'
 import TextInput from '@/components/form/TextInput'
 import { Timestamp } from 'firebase/firestore'
 import React, { useState } from 'react'
@@ -15,6 +16,7 @@ export default function DashboardPage() {
         <TextInput type="email" name="Naam" value={text} onChange={setText} />
         <TextInput type="password" name="Naam" value={text} onChange={setText} />
         <DateInput name="Datum" value={timestamp} onChange={setTimestamp} />
+        <DateTimeInput name="Datum" value={timestamp} onChange={setTimestamp} />
       </div>
     </>
   )
