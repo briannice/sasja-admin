@@ -1,5 +1,7 @@
 import Link from '@/components/Link'
+import { auth } from '@/services/firebase'
 import clsx from 'clsx'
+import { signOut } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import React from 'react'
 import {
@@ -8,6 +10,8 @@ import {
   RiDashboardLine,
   RiGameLine,
   RiGamepadLine,
+  RiGlobalLine,
+  RiLogoutCircleRLine,
   RiNewspaperLine,
   RiRunLine,
   RiShieldUserLine,
@@ -30,7 +34,7 @@ export default function Sidebar() {
   const router = useRouter()
 
   return (
-    <aside className="rounded-lg bg-white p-8 shadow">
+    <aside className="flex flex-col rounded-lg bg-white p-8 shadow">
       <nav>
         <ul className="flex flex-col space-y-2">
           {links.map((link) => {
@@ -58,6 +62,16 @@ export default function Sidebar() {
           })}
         </ul>
       </nav>
+      <div className="mt-auto flex flex-col space-y-4">
+        <Link href="/website" className="btn btn-text-icon btn-primary">
+          <span>Website</span>
+          <RiGlobalLine />
+        </Link>
+        <button onClick={() => signOut(auth)} className="btn btn-text-icon btn-primary">
+          <span>Uitloggen</span>
+          <RiLogoutCircleRLine />
+        </button>
+      </div>
     </aside>
   )
 }

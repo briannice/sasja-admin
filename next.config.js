@@ -9,6 +9,11 @@ const nextConfig = {
         destination: '/dashboard',
         permanent: true,
       },
+      {
+        source: '/website',
+        destination: 'https://sasja-antwerpen.be',
+        permanent: true,
+      },
     ]
   },
 }

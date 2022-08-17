@@ -21,3 +21,29 @@
     @apply border-2 border-transparent focus:border-primary focus:outline-none;
   }
 }
+
+@layer components {
+  /* ------ */
+  /* BUTTON */
+  /* ------ */
+
+  .btn {
+    @apply shadow-sm ring-offset-2 focus:outline-none focus:ring-2;
+  }
+
+  .btn-text-icon {
+    @apply flex items-center justify-between space-x-3 rounded-lg px-5 py-2;
+  }
+
+  .btn-text-icon > span {
+    @apply font-kanit;
+  }
+
+  .btn-text-icon > svg {
+    @apply h-5 w-5;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white ring-primary hover:bg-primary-dark;
+  }
+}
