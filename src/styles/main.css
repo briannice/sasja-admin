@@ -20,9 +20,39 @@
   a {
     @apply border-2 border-transparent focus:border-primary focus:outline-none;
   }
+
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply input;
+  }
+
+  label {
+    @apply mb-2 block pl-0.5 font-kanit text-dark;
+  }
 }
 
 @layer components {
+  /* ----- */
+  /* INPUT */
+  /* ----- */
+
+  .input {
+    @apply w-full rounded border-medium focus:border-primary focus:outline-none focus:ring-primary;
+  }
+
   /* ------ */
   /* BUTTON */
   /* ------ */
