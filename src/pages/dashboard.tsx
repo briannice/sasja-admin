@@ -1,3 +1,4 @@
+import TextEditor from '@/components/editor/TextEditor'
 import DateInput from '@/components/form/DateInput'
 import DateTimeInput from '@/components/form/DateTimeInput'
 import SelectInput from '@/components/form/SelectInput'
@@ -16,6 +17,7 @@ const vs = [
 
 export default function DashboardPage() {
   const [text, setText] = useState('')
+  const [editor, setEditor] = useState('')
   const [timestamp, setTimestamp] = useState(Timestamp.now())
   const [v, setV] = useState(vs[0].key)
 
@@ -29,6 +31,7 @@ export default function DashboardPage() {
         <DateInput name="Datum" value={timestamp} onChange={setTimestamp} />
         <DateTimeInput name="Datum" value={timestamp} onChange={setTimestamp} />
         <SelectInput name="SelectInput" values={vs} value={v} onChange={setV} />
+        <TextEditor value={editor} onChange={setEditor} className="col-span-2" />
       </div>
     </>
   )
