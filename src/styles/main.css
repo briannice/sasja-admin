@@ -76,4 +76,28 @@
   .btn-primary {
     @apply bg-primary text-white ring-primary hover:bg-primary-dark;
   }
+
+  /* ------ */
+  /* BUTTON */
+  /* ------ */
+
+  .text-editor-btn > svg {
+    @apply h-4 w-4;
+  }
+
+  .text-editor h2 {
+    @apply mt-5 text-5xl;
+  }
+
+  .text-editor h3 {
+    @apply mt-5 text-3xl;
+  }
+
+  .text-editor h4 {
+    @apply mt-5 text-xl;
+  }
+
+  .text-editor p {
+    @apply mt-3 leading-relaxed text-dark;
+  }
 }
