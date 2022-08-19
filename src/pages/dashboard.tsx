@@ -7,11 +7,11 @@ import React, { useState } from 'react'
 
 const vs = [
   { key: 'a', value: 'Haha' },
-  { key: 'b', value: 'Haha' },
-  { key: 'c', value: 'Haha' },
-  { key: 'd', value: 'Haha' },
-  { key: 'e', value: 'Haha' },
-  { key: 'f', value: 'Haha' },
+  { key: 'b', value: 'Hehe' },
+  { key: 'c', value: 'Hoho' },
+  { key: 'd', value: 'Hihi' },
+  { key: 'e', value: 'Huhu' },
+  { key: 'f', value: 'Hyhy' },
 ]
 
 export default function DashboardPage() {
