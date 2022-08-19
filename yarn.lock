@@ -657,6 +657,11 @@
     prosemirror-transform "1.6.0"
     prosemirror-view "1.26.2"
 
+"@tiptap/extension-bold@^2.0.0-beta.28":
+  version "2.0.0-beta.28"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-bold/-/extension-bold-2.0.0-beta.28.tgz#cf67c264a80434ffb2368f3dd37cf357ae0c2064"
+  integrity sha512-DY8GOzw9xjmTFrnvTbgHUNxTnDfKrkDgrhe0SUvdkT2udntWp8umPdhPiD3vczLgHOJw6tX68qMRjbsR1ZPcHQ==
+
 "@tiptap/extension-bubble-menu@^2.0.0-beta.61":
   version "2.0.0-beta.61"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-bubble-menu/-/extension-bubble-menu-2.0.0-beta.61.tgz#cc61ce8b094fdbcec58f44f0fa39172a726c024c"
@@ -685,6 +690,11 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-heading/-/extension-heading-2.0.0-beta.29.tgz#d017d216c0fd1962c266f6f61a335093f9749862"
   integrity sha512-q92jYcsT5bPhvuQaB0h44Z9r+Ii22tDYo082KMVnR4+tknHT/3xx+p4JC8KHjh+/5W8Quyafqy6mS8L8VX0zsQ==
 
+"@tiptap/extension-italic@^2.0.0-beta.28":
+  version "2.0.0-beta.28"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-italic/-/extension-italic-2.0.0-beta.28.tgz#bf88ecae64c8f2f69f1f508b802c1efd7454a84e"
+  integrity sha512-/pKRiCfewh7nqiXRD3N4hQHfGrGNOiWPFYZfY35bSpvTms7PDb/MF7xT1CWW23hSpY31BBS+R/a66vlR/gqu7Q==
+
 "@tiptap/extension-paragraph@^2.0.0-beta.26":
   version "2.0.0-beta.26"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-paragraph/-/extension-paragraph-2.0.0-beta.26.tgz#5199c8cedb9c076347a2e15cc67442ef7c3c3fbb"
@@ -694,6 +704,11 @@
   version "2.0.0-beta.17"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-text/-/extension-text-2.0.0-beta.17.tgz#4fdd1bdf62c82c1af6feef91c689906a8f5b171e"
   integrity sha512-OyKL+pqWJEtjyd9/mrsuY1kZh2b3LWpOQDWKtd4aWR4EA0efmQG+7FPwcIeAVEh7ZoqM+/ABCnPjN6IjzIrSfg==
+
+"@tiptap/extension-underline@^2.0.0-beta.25":
+  version "2.0.0-beta.25"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-underline/-/extension-underline-2.0.0-beta.25.tgz#b1580b2337a6ba7add5737e886bd88c8655241f2"
+  integrity sha512-kRDdb/mF6QWzFGV3cQuLh6xyXULXaKPL/TghefoOZhwkdIWV/M3zFar5tsZO54+tbIrzxoVP6t7mO2Y5G/SLDQ==
 
 "@tiptap/react@^2.0.0-beta.114":
   version "2.0.0-beta.114"
