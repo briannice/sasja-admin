@@ -19,7 +19,7 @@ export default function SelectInput({ name, onChange, value, values, className }
         <Listbox.Button className="input form-select text-left">
           <span>{values.find((v) => v.key === value)?.value}</span>
         </Listbox.Button>
-        <Listbox.Options className="absolute mt-2 w-full rounded border border-primary bg-white p-1 ring-1 ring-primary focus:outline-none">
+        <Listbox.Options className="absolute z-30 mt-2 w-full rounded border border-primary bg-white p-1 ring-1 ring-primary focus:outline-none">
           {values.map(({ key, value }) => (
             <Listbox.Option
               key={key}
