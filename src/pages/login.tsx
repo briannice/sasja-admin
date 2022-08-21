@@ -50,7 +50,7 @@ export default function LoginPage() {
         <h2 className="text-5xl">Sasja Admin</h2>
         <p className="mt-8 leading-relaxed text-dark">
           Meld je hier aan om de website van Sasja HC te beheren. Indien je niet beschikt over de
-          juiste gegevens om aan te melden, neem dan contact op met{' '}
+          juiste gegevens beschikt om aan te melden, neem dan contact op met{' '}
           <a href="mailto:website@sasja-antwerpen.beschikt" className="font-bold">
             website@sasja-antwerpen.be
           </a>
