@@ -1,9 +1,13 @@
+import ListButtons from '@/components/editor/buttons/ListButtons'
 import MarkButtons from '@/components/editor/buttons/MarkButtons'
 import TextButtons from '@/components/editor/buttons/TextButtons'
 import Bold from '@tiptap/extension-bold'
+import BulletList from '@tiptap/extension-bullet-list'
 import Document from '@tiptap/extension-document'
 import Heading from '@tiptap/extension-heading'
 import Italic from '@tiptap/extension-italic'
+import ListItem from '@tiptap/extension-list-item'
+import OrderedList from '@tiptap/extension-ordered-list'
 import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
 import Underline from '@tiptap/extension-underline'
@@ -21,9 +25,12 @@ export default function TextEditor({ onChange, value, className }: Props) {
   const editor = useEditor({
     extensions: [
       Bold,
+      BulletList,
       Document,
       Heading.configure({ levels: [2, 3, 4] }),
       Italic,
+      ListItem,
+      OrderedList,
       Paragraph,
       Text,
       Underline,
@@ -51,6 +58,7 @@ export default function TextEditor({ onChange, value, className }: Props) {
       <div className="flex space-x-8 rounded px-8 py-4">
         <TextButtons editor={editor} />
         <MarkButtons editor={editor} />
+        <ListButtons editor={editor} />
       </div>
       <div className="overflow-y-scroll">
         <EditorContent editor={editor} />

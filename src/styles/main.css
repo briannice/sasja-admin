@@ -82,23 +82,23 @@
   /* ------ */
 
   .text-editor-btn > svg {
-    @apply h-4 w-4;
+    @apply h-5 w-5;
   }
 
   .text-editor h2 {
-    @apply mt-5 text-5xl;
+    @apply mt-8 text-4xl;
   }
 
   .text-editor h3 {
-    @apply mt-5 text-3xl;
+    @apply mt-6 text-2xl;
   }
 
   .text-editor h4 {
-    @apply mt-5 text-xl;
+    @apply mt-6 text-lg;
   }
 
   .text-editor p {
-    @apply mt-3 leading-relaxed text-dark;
+    @apply mt-4 leading-relaxed text-dark;
   }
 
   .text-editor b {
@@ -111,5 +111,21 @@
 
   .text-editor u {
     @apply decoration-primary decoration-2 underline-offset-4;
+  }
+
+  .text-editor ul {
+    @apply mt-4 list-inside list-disc space-y-1;
+  }
+
+  .text-editor ol {
+    @apply mt-4 list-inside list-decimal space-y-1;
+  }
+
+  .text-editor ul p {
+    @apply mt-0 inline-block;
+  }
+
+  .text-editor ol p {
+    @apply mt-0 inline-block;
   }
 }
