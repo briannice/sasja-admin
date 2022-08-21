@@ -1,5 +1,6 @@
 import ListButtons from '@/components/editor/buttons/ListButtons'
 import MarkButtons from '@/components/editor/buttons/MarkButtons'
+import TableButtons from '@/components/editor/buttons/TableButtons'
 import TextButtons from '@/components/editor/buttons/TextButtons'
 import Bold from '@tiptap/extension-bold'
 import BulletList from '@tiptap/extension-bullet-list'
@@ -9,6 +10,10 @@ import Italic from '@tiptap/extension-italic'
 import ListItem from '@tiptap/extension-list-item'
 import OrderedList from '@tiptap/extension-ordered-list'
 import Paragraph from '@tiptap/extension-paragraph'
+import Table from '@tiptap/extension-table'
+import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '@tiptap/extension-table-header'
+import TableRow from '@tiptap/extension-table-row'
 import Text from '@tiptap/extension-text'
 import Underline from '@tiptap/extension-underline'
 import { EditorContent, useEditor } from '@tiptap/react'
@@ -32,6 +37,10 @@ export default function TextEditor({ onChange, value, className }: Props) {
       ListItem,
       OrderedList,
       Paragraph,
+      Table,
+      TableCell.extend({ content: 'text*' }),
+      TableHeader.extend({ content: 'text*' }),
+      TableRow,
       Text,
       Underline,
     ],
@@ -55,10 +64,11 @@ export default function TextEditor({ onChange, value, className }: Props) {
 
   return (
     <div className={clsx('divide-y divide-medium rounded border border-medium', className)}>
-      <div className="flex space-x-8 rounded px-8 py-4">
+      <div className="flex space-x-12 rounded px-8 py-4">
         <TextButtons editor={editor} />
         <MarkButtons editor={editor} />
         <ListButtons editor={editor} />
+        <TableButtons editor={editor} />
       </div>
       <div className="overflow-y-scroll">
         <EditorContent editor={editor} />

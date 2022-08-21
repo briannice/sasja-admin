@@ -129,6 +129,22 @@
     @apply mt-0 inline-block;
   }
 
+  .text-editor table {
+    @apply mt-4 min-w-full shadow-sm;
+  }
+
+  .text-editor tr {
+    @apply first:border first:border-primary;
+  }
+
+  .text-editor th {
+    @apply border border-primary bg-primary p-3 text-left font-bold text-white;
+  }
+
+  .text-editor td {
+    @apply border border-medium p-3 text-left;
+  }
+
   /* --------- */
   /* SCROLLBAR */
   /* --------- */
