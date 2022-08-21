@@ -9,9 +9,7 @@ import {
   RiInsertColumnRight,
   RiInsertRowBottom,
   RiInsertRowTop,
-  RiMergeCellsHorizontal,
   RiTable2,
-  RiTableLine,
 } from 'react-icons/ri'
 
 type Props = {

@@ -1,3 +1,4 @@
+import HistoryButtons from '@/components/editor/buttons/HistoryButtons'
 import ListButtons from '@/components/editor/buttons/ListButtons'
 import MarkButtons from '@/components/editor/buttons/MarkButtons'
 import TableButtons from '@/components/editor/buttons/TableButtons'
@@ -6,6 +7,7 @@ import Bold from '@tiptap/extension-bold'
 import BulletList from '@tiptap/extension-bullet-list'
 import Document from '@tiptap/extension-document'
 import Heading from '@tiptap/extension-heading'
+import History from '@tiptap/extension-history'
 import Italic from '@tiptap/extension-italic'
 import ListItem from '@tiptap/extension-list-item'
 import OrderedList from '@tiptap/extension-ordered-list'
@@ -33,6 +35,7 @@ export default function TextEditor({ onChange, value, className }: Props) {
       BulletList,
       Document,
       Heading.configure({ levels: [2, 3, 4] }),
+      History,
       Italic,
       ListItem,
       OrderedList,
@@ -65,6 +68,7 @@ export default function TextEditor({ onChange, value, className }: Props) {
   return (
     <div className={clsx('divide-y divide-medium rounded border border-medium', className)}>
       <div className="flex space-x-12 rounded px-8 py-4">
+        <HistoryButtons editor={editor} />
         <TextButtons editor={editor} />
         <MarkButtons editor={editor} />
         <ListButtons editor={editor} />
