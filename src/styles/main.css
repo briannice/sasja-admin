@@ -128,4 +128,17 @@
   .text-editor ol p {
     @apply mt-0 inline-block;
   }
+
+  /* --------- */
+  /* SCROLLBAR */
+  /* --------- */
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
