@@ -1,11 +1,43 @@
 import TextInput from '@/components/form/TextInput'
+import { auth } from '@/services/firebase'
+import { AuthError, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import React, { FormEventHandler, useEffect, useState } from 'react'
 import { RiLoginBoxLine } from 'react-icons/ri'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.replace('/dashboard')
+      } else {
+        setIsLoading(false)
+      }
+    })
+  }, [router])
+
+  const submitHandler: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault()
+    setIsLoading(true)
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        router.push('/dashboard')
+      })
+      .catch((err: AuthError) => {
+        setError(err.message)
+        setIsLoading(false)
+      })
+  }
+
+  if (isLoading) return <p>Loading...</p>
 
   return (
     <main className="flex h-screen">
@@ -23,7 +55,7 @@ export default function LoginPage() {
           </a>
           .
         </p>
-        <form className="mt-8 border-t-2 border-primary pt-8">
+        <form onSubmit={submitHandler} className="mt-8 border-t-2 border-primary pt-8">
           <TextInput name="email" type="email" value={email} onChange={setEmail} />
           <TextInput
             name="password"
@@ -36,6 +68,7 @@ export default function LoginPage() {
             <span>Aanmelden</span>
             <RiLoginBoxLine />
           </button>
+          {error && <p className="mt-4 text-center text-sm text-error">{error}</p>}
         </form>
       </section>
     </main>
