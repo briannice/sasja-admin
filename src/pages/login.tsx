@@ -1,4 +1,5 @@
 import TextInput from '@/components/form/TextInput'
+import Loading from '@/components/Loading'
 import { auth } from '@/services/firebase'
 import { AuthError, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
 import Image from 'next/image'
@@ -37,7 +38,7 @@ export default function LoginPage() {
       })
   }
 
-  if (isLoading) return <p>Loading...</p>
+  if (isLoading) return <Loading />
 
   return (
     <main className="flex h-screen">

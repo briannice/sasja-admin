@@ -1,5 +1,6 @@
 import Header from '@/components/layout/Header'
 import Sidebar from '@/components/layout/Sidebar'
+import Loading from '@/components/Loading'
 import { auth } from '@/services/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/router'
@@ -24,7 +25,7 @@ export default function Layout({ children }: Props) {
     })
   }, [router])
 
-  if (isLoading) return <p>Loading...</p>
+  if (isLoading) return <Loading />
 
   return (
     <div className="grid h-screen grid-cols-layout grid-rows-layout gap-4 bg-light p-4">
