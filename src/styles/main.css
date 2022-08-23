@@ -113,6 +113,10 @@
     @apply decoration-primary decoration-2 underline-offset-4;
   }
 
+  .text-editor a {
+    @apply font-bold text-info underline decoration-info decoration-2 underline-offset-4;
+  }
+
   .text-editor ul {
     @apply mt-4 list-inside list-disc space-y-1;
   }
