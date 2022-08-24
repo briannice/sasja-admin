@@ -2,7 +2,7 @@ import TextEditorButton from '@/components/editor/TextEditorButton'
 import TextEditorButtonGroup from '@/components/editor/TextEditorButtonGroup'
 import { Editor } from '@tiptap/react'
 import React, { useCallback } from 'react'
-import { RiBold, RiItalic, RiLink, RiUnderline } from 'react-icons/ri'
+import { RiBold, RiItalic, RiLink, RiStrikethrough, RiUnderline } from 'react-icons/ri'
 
 type Props = {
   editor: Editor
@@ -12,6 +12,7 @@ export default function MarkButtons({ editor }: Props) {
   const isBold = editor.isActive('bold')
   const isItalic = editor.isActive('italic')
   const isUnderline = editor.isActive('underline')
+  const isStrike = editor.isActive('strike')
 
   const setLink = useCallback(() => {
     const previousUrl = editor.getAttributes('link').href
@@ -45,6 +46,12 @@ export default function MarkButtons({ editor }: Props) {
         active={isUnderline}
       >
         <RiUnderline />
+      </TextEditorButton>
+      <TextEditorButton
+        onClick={() => editor.chain().focus().toggleStrike().run()}
+        active={isStrike}
+      >
+        <RiStrikethrough />
       </TextEditorButton>
       <TextEditorButton onClick={() => setLink()} active={isUnderline}>
         <RiLink />

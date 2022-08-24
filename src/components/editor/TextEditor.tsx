@@ -13,6 +13,7 @@ import Link from '@tiptap/extension-link'
 import ListItem from '@tiptap/extension-list-item'
 import OrderedList from '@tiptap/extension-ordered-list'
 import Paragraph from '@tiptap/extension-paragraph'
+import Strike from '@tiptap/extension-strike'
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
@@ -42,6 +43,7 @@ export default function TextEditor({ onChange, value, className }: Props) {
       ListItem,
       OrderedList,
       Paragraph,
+      Strike,
       Table,
       TableCell.extend({ content: 'text*' }),
       TableHeader.extend({ content: 'text*' }),

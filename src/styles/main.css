@@ -113,6 +113,12 @@
     @apply decoration-primary decoration-2 underline-offset-4;
   }
 
+  .text-editor s,
+  .text-editor del,
+  .text-editor strike {
+    @apply line-through decoration-primary decoration-2;
+  }
+
   .text-editor a {
     @apply font-bold text-info underline decoration-info decoration-2 underline-offset-4;
   }
