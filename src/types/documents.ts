@@ -1,19 +1,16 @@
 import { Timestamp } from 'firebase/firestore'
 
-export type BaseDocument = {
+export type BaseDocument<T> = {
   id: string
-  data: {
-    created: Timestamp
-    updated: Timestamp
-  }
+  data: T
 }
 
-export type EventDocument = BaseDocument & {
-  data: {
-    name: string
-    content: string
-    time: Timestamp
-    location: string
-    public: boolean
-  }
+export type EventDocumentData = {
+  name: string
+  content: string
+  time: Timestamp
+  location: string
+  public: boolean
 }
+
+export type EventDocument = BaseDocument<EventDocumentData>
