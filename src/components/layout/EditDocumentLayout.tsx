@@ -4,6 +4,7 @@ import { FirebaseError } from 'firebase/app'
 import { doc, getDoc } from 'firebase/firestore'
 import { useRouter } from 'next/router'
 import React, { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react'
+import { RiSaveLine } from 'react-icons/ri'
 
 type RenderProps<T> = {
   document: T
@@ -42,11 +43,15 @@ export default function EditDocumentLayout<T>({ children, col, name }: Props<T>)
 
   return (
     <>
-      <div>
-        <h1>{name}</h1>
-        {error && <p>{error.message}</p>}
+      <h1>{name}</h1>
+      <div className="flex justify-between">
+        <div>{error && <p>{error.message}</p>}</div>
+        <button className="btn btn-text-icon btn-primary">
+          <span>Save</span>
+          <RiSaveLine />
+        </button>
       </div>
-      <form>{children({ document, setDocument })}</form>
+      <form className="grid grid-cols-2 gap-8">{children({ document, setDocument })}</form>
     </>
   )
 }
