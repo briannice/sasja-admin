@@ -1,15 +1,16 @@
 import TextEditor from '@/components/editor/TextEditor'
 import DateTimeInput from '@/components/form/DateTimeInput'
+import ImageInput from '@/components/form/ImageInput'
 import SwitchInput from '@/components/form/SwitchInput'
 import TextInput from '@/components/form/TextInput'
-import EditDocumentLayout from '@/components/layout/EditDocumentLayout'
+import EditDocument from '@/components/hoc/EditDocument'
 import { EventDocumentData } from '@/types/documents'
 import React from 'react'
 
 export default function EventEditPage() {
   return (
-    <EditDocumentLayout<EventDocumentData> col="events" name="Evenement">
-      {({ document, setDocument }) => (
+    <EditDocument<EventDocumentData> col="events" name="Evenement">
+      {({ document, id, setDocument }) => (
         <>
           <div className="space-y-8">
             <TextInput
@@ -30,11 +31,12 @@ export default function EventEditPage() {
               onChange={(v) => setDocument({ ...document, location: v })}
             />
             <SwitchInput
-              name="Publiceren"
+              name="publiceren"
               value={document.public}
               onChange={(v) => setDocument({ ...document, public: v })}
             />
           </div>
+          <ImageInput id={id} name="Banner" path="events" />
           <TextEditor
             value={document.content}
             onChange={(v) => setDocument({ ...document, content: v })}
@@ -42,7 +44,7 @@ export default function EventEditPage() {
           />
         </>
       )}
-    </EditDocumentLayout>
+    </EditDocument>
   )
 }
 

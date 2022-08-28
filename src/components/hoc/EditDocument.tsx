@@ -8,6 +8,7 @@ import { RiSaveLine } from 'react-icons/ri'
 
 type RenderProps<T> = {
   document: T
+  id: string
   setDocument: Dispatch<SetStateAction<T | null>>
 }
 
@@ -17,17 +18,17 @@ type Props<T> = {
   name: string
 }
 
-export default function EditDocumentLayout<T>({ children, col, name }: Props<T>) {
+export default function EditDocument<T>({ children, col, name }: Props<T>) {
   const [document, setDocument] = useState<T | null>(null)
   const [error, setError] = useState<FirebaseError | null>(null)
 
   const [isLoading, setIsLoading] = useState(true)
 
   const router = useRouter()
-  const documentId = router.asPath.split('/').pop() as string
+  const id = router.asPath.split('/').pop() as string
 
   useEffect(() => {
-    getDoc(doc(db, col, documentId))
+    getDoc(doc(db, col, id))
       .then((d) => {
         setDocument({ ...d.data() } as unknown as T)
       })
@@ -37,7 +38,7 @@ export default function EditDocumentLayout<T>({ children, col, name }: Props<T>)
       .finally(() => {
         setIsLoading(false)
       })
-  }, [col, documentId])
+  }, [col, id])
 
   if (!document || isLoading) return <Loading />
 
@@ -51,7 +52,7 @@ export default function EditDocumentLayout<T>({ children, col, name }: Props<T>)
           <RiSaveLine />
         </button>
       </div>
-      <form className="grid grid-cols-2 gap-8">{children({ document, setDocument })}</form>
+      <form className="grid grid-cols-2 gap-8">{children({ document, id, setDocument })}</form>
     </>
   )
 }
