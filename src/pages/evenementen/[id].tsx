@@ -1,5 +1,6 @@
 import TextEditor from '@/components/editor/TextEditor'
 import DateTimeInput from '@/components/form/DateTimeInput'
+import SwitchInput from '@/components/form/SwitchInput'
 import TextInput from '@/components/form/TextInput'
 import EditDocumentLayout from '@/components/layout/EditDocumentLayout'
 import { EventDocumentData } from '@/types/documents'
@@ -27,6 +28,11 @@ export default function EventEditPage() {
               name="locatie"
               value={document.location}
               onChange={(v) => setDocument({ ...document, location: v })}
+            />
+            <SwitchInput
+              name="Publiceren"
+              value={document.public}
+              onChange={(v) => setDocument({ ...document, public: v })}
             />
           </div>
           <TextEditor
