@@ -31,10 +31,8 @@ export default function Layout({ children }: Props) {
     <div className="grid h-screen grid-cols-layout grid-rows-layout gap-4 bg-light p-4">
       <Header />
       <Sidebar />
-      <main className="rounded-lg bg-white p-8 shadow">
-        <div className="no-scrollbar relative mx-auto max-w-screen-xl overflow-y-scroll">
-          {children}
-        </div>
+      <main className="no-scrollbar overflow-y-scroll rounded-lg bg-white p-8 shadow">
+        <div className="relative mx-auto max-w-screen-2xl">{children}</div>
       </main>
     </div>
   )

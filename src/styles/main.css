@@ -89,9 +89,37 @@
     @apply bg-light text-dark ring-light hover:bg-medium;
   }
 
-  /* ------ */
-  /* BUTTON */
-  /* ------ */
+  /* ----- */
+  /* TOAST */
+  /* ----- */
+
+  .toast {
+    @apply flex items-center space-x-3 rounded-lg border px-5 py-2;
+  }
+
+  .toast > svg {
+    @apply h-4 w-4;
+  }
+
+  .toast > span {
+    @apply font-kanit;
+  }
+
+  .toast-success {
+    @apply border-success bg-success/25 text-success;
+  }
+
+  .toast-info {
+    @apply border-info bg-info/25 text-info;
+  }
+
+  .toast-error {
+    @apply border-error bg-error/25 text-error;
+  }
+
+  /* ----------- */
+  /* TEXT EDITOR */
+  /* ----------- */
 
   .text-editor-btn > svg {
     @apply h-5 w-5;
