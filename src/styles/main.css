@@ -22,23 +22,19 @@
   }
 
   table {
-    @apply min-w-full table-auto;
-  }
-
-  thead {
-    @apply border border-primary bg-primary text-white;
+    @apply min-w-full table-auto border-separate border-spacing-0;
   }
 
   th {
-    @apply px-3 py-2 text-left font-kanit font-medium;
-  }
-
-  tbody {
-    @apply border border-medium;
+    @apply border border-primary bg-primary px-3 py-2 text-left font-kanit font-medium text-white first:rounded-tl-lg last:rounded-tr-lg;
   }
 
   td {
-    @apply px-3 py-2;
+    @apply border-b border-medium p-3 first:border-l last:border-r;
+  }
+
+  tr:last-child td {
+    @apply first:rounded-bl-lg last:rounded-br-lg;
   }
 
   table p {
@@ -109,8 +105,28 @@
     @apply h-4 w-4;
   }
 
+  .btn-icon-sm {
+    @apply rounded-full p-1.5;
+  }
+
+  .btn-icon-sm > svg {
+    @apply h-3 w-3;
+  }
+
   .btn-primary {
     @apply bg-primary text-white ring-primary hover:bg-primary-dark;
+  }
+
+  .btn-error {
+    @apply bg-error text-white ring-error hover:bg-error-dark;
+  }
+
+  .btn-info {
+    @apply bg-info text-white ring-info hover:bg-info-dark;
+  }
+
+  .btn-warning {
+    @apply bg-warning text-white ring-warning hover:bg-warning-dark;
   }
 
   .btn-gray {

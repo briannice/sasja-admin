@@ -1,3 +1,4 @@
+import ActionButtons from '@/components/ActionButtons'
 import OverviewCollection from '@/components/hoc/OverviewCollection'
 import SwitchHandler from '@/components/SwitchHandler'
 import { EventDocument } from '@/types/documents'
@@ -32,6 +33,9 @@ export default function EventOverviewPage() {
                 </td>
                 <td>
                   <SwitchHandler col="events" id={id} initial={data.public} name="public" />
+                </td>
+                <td>
+                  <ActionButtons edit={`/evenementen/${id}`} view="" />
                 </td>
               </tr>
             ))}
