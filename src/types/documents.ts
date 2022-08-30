@@ -10,6 +10,7 @@ export type EventDocumentData = {
   content: string
   time: Timestamp
   location: string
+  address: string
   public: boolean
 }
 

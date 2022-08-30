@@ -10,6 +10,7 @@ type Props = {
 export default function TextEditorButton({ children, onClick, active }: Props) {
   return (
     <button
+      type="button"
       onClick={onClick}
       className={clsx(
         'text-editor-btn rounded  p-2',

@@ -12,13 +12,14 @@ export default function EventEditPage() {
     <EditDocument<EventDocumentData> col="events" name="Evenement">
       {({ document, id, setDocument }) => (
         <>
+          <TextInput
+            type="text"
+            name="naam"
+            value={document.name}
+            onChange={(v) => setDocument({ ...document, name: v })}
+            className="col-span-2"
+          />
           <div className="space-y-8">
-            <TextInput
-              type="text"
-              name="naam"
-              value={document.name}
-              onChange={(v) => setDocument({ ...document, name: v })}
-            />
             <DateTimeInput
               name="Tijd"
               value={document.time}
@@ -29,6 +30,12 @@ export default function EventEditPage() {
               name="locatie"
               value={document.location}
               onChange={(v) => setDocument({ ...document, location: v })}
+            />
+            <TextInput
+              type="text"
+              name="adres"
+              value={document.address}
+              onChange={(v) => setDocument({ ...document, address: v })}
             />
             <SwitchInput
               name="publiceren"
