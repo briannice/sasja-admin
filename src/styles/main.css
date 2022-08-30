@@ -21,6 +21,34 @@
     @apply border-2 border-transparent focus:border-primary focus:outline-none;
   }
 
+  table {
+    @apply min-w-full table-auto;
+  }
+
+  thead {
+    @apply border border-primary bg-primary text-white;
+  }
+
+  th {
+    @apply px-3 py-2 text-left font-kanit font-medium;
+  }
+
+  tbody {
+    @apply border border-medium;
+  }
+
+  td {
+    @apply px-3 py-2;
+  }
+
+  table p {
+    @apply font-bold;
+  }
+
+  table time {
+    @apply text-dark;
+  }
+
   [type='text'],
   [type='email'],
   [type='url'],

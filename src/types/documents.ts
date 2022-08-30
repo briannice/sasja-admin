@@ -5,7 +5,12 @@ export type BaseDocument<T> = {
   data: T
 }
 
-export type EventDocumentData = {
+export type BaseDocumentData = {
+  created: Timestamp
+  updated: Timestamp
+}
+
+export type EventDocumentData = BaseDocumentData & {
   name: string
   content: string
   time: Timestamp

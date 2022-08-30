@@ -10,3 +10,7 @@ export const timestampToString = (timestamp: Timestamp, format: string) => {
   const date = timestamp.toDate()
   return dateToString(date, format)
 }
+
+export const timestampToTableString = (timestamp: Timestamp) => {
+  return timestampToString(timestamp, 'HHumm DD/MM')
+}

@@ -32,7 +32,7 @@ export default function Layout({ children }: Props) {
       <Header />
       <Sidebar />
       <main className="no-scrollbar overflow-y-scroll rounded-lg bg-white p-8 shadow">
-        <div className="relative mx-auto max-w-screen-2xl">{children}</div>
+        <div className="relative mx-auto min-h-full max-w-screen-2xl">{children}</div>
       </main>
     </div>
   )
