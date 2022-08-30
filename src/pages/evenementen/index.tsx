@@ -1,14 +1,18 @@
 import ActionButtons from '@/components/ActionButtons'
 import OverviewCollection from '@/components/hoc/OverviewCollection'
 import SwitchHandler from '@/components/SwitchHandler'
-import { COL_EVENTS } from '@/services/firebase/firestore'
-import { EventDocument } from '@/types/documents'
+import { COL_EVENTS, DOC_EVENTS } from '@/services/firebase/firestore'
+import { EventDocument, EventDocumentData } from '@/types/documents'
 import { timestampToTableString } from '@/utils/date'
 import React from 'react'
 
 export default function EventOverviewPage() {
   return (
-    <OverviewCollection<EventDocument> col={COL_EVENTS} name="evenementen">
+    <OverviewCollection<EventDocument, EventDocumentData>
+      col={COL_EVENTS}
+      create={DOC_EVENTS}
+      name="evenementen"
+    >
       {({ documents }) => (
         <table>
           <thead>
