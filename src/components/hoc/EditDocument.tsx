@@ -11,7 +11,13 @@ import React, {
   useEffect,
   useState,
 } from 'react'
-import { RiCheckLine, RiErrorWarningLine, RiLoaderLine, RiSaveLine } from 'react-icons/ri'
+import {
+  RiArrowLeftSLine,
+  RiCheckLine,
+  RiErrorWarningLine,
+  RiLoaderLine,
+  RiSaveLine,
+} from 'react-icons/ri'
 
 type RenderProps<T> = {
   document: T
@@ -56,31 +62,38 @@ export default function EditDocument<T>({ children, col, name }: Props<T>) {
   return (
     <>
       <h1 className="sr-only">{name}</h1>
-      <div className="flex justify-between">
-        <div>
-          {isLoading ? (
-            <div className="toast toast-info">
-              <span>Opslaan</span>
-              <RiLoaderLine className="animate-spin" />
-            </div>
-          ) : isSuccess ? (
-            <div className="toast toast-success">
-              <span>Success</span>
-              <RiCheckLine />
-            </div>
-          ) : error ? (
-            <div className="toast toast-error">
-              <span>Oeps, er is iets mis gegaan</span>
-              <RiErrorWarningLine />
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
-        <button onClick={updateDocument} className="btn btn-text-icon btn-primary">
+      <div className="flex">
+        <button
+          onClick={() => {
+            setIsLoading(true)
+            router.back()
+          }}
+          className="btn btn-primary mr-8 block rounded-full p-1"
+        >
+          <RiArrowLeftSLine className="h-8 w-8" />
+        </button>
+        <button onClick={updateDocument} className="btn btn-text-icon btn-primary mr-auto">
           <span>Save</span>
           <RiSaveLine />
         </button>
+        {isLoading ? (
+          <div className="toast toast-info">
+            <span>Opslaan</span>
+            <RiLoaderLine className="animate-spin" />
+          </div>
+        ) : isSuccess ? (
+          <div className="toast toast-success">
+            <span>Success</span>
+            <RiCheckLine />
+          </div>
+        ) : error ? (
+          <div className="toast toast-error">
+            <span>Oeps, er is iets mis gegaan</span>
+            <RiErrorWarningLine />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       <form className="mt-8 grid grid-cols-2 gap-8">{children({ document, id, setDocument })}</form>
     </>
