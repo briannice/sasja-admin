@@ -40,7 +40,7 @@ export default function EventOverviewPage() {
                   <SwitchHandler col={COL_EVENTS} id={id} initial={data.public} name="public" />
                 </td>
                 <td>
-                  <ActionButtons edit={`/evenementen/${id}`} view="" />
+                  <ActionButtons url={`/evenementen/${id}`} />
                 </td>
               </tr>
             ))}

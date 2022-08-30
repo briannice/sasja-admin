@@ -1,3 +1,4 @@
+import ExternalLink from '@/components/ExternalLink'
 import Link from '@/components/Link'
 import { auth } from '@/services/firebase'
 import clsx from 'clsx'
@@ -63,10 +64,10 @@ export default function Sidebar() {
         </ul>
       </nav>
       <div className="mt-auto flex flex-col space-y-4">
-        <Link href="/website" className="btn btn-text-icon btn-primary">
+        <ExternalLink href="/" className="btn btn-text-icon btn-primary">
           <span>Website</span>
           <RiGlobalLine />
-        </Link>
+        </ExternalLink>
         <button onClick={() => signOut(auth)} className="btn btn-text-icon btn-primary">
           <span>Uitloggen</span>
           <RiLogoutCircleRLine />
