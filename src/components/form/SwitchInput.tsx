@@ -17,7 +17,7 @@ export default function SwitchInput({ name, onChange, value, className }: Props)
         checked={value}
         onChange={onChange}
         className={clsx(
-          'relative h-6 w-14 cursor-pointer rounded-full transition-colors',
+          'relative h-6 w-14 cursor-pointer rounded-full transition-colors focus:outline-none',
           value ? 'bg-primary' : 'bg-medium'
         )}
       >

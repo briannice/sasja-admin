@@ -114,23 +114,23 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-white ring-primary hover:bg-primary-dark;
+    @apply bg-primary text-white ring-primary hover:bg-primary-dark focus:border-primary;
   }
 
   .btn-error {
-    @apply bg-error text-white ring-error hover:bg-error-dark;
+    @apply bg-error text-white ring-error hover:bg-error-dark focus:border-error;
   }
 
   .btn-info {
-    @apply bg-info text-white ring-info hover:bg-info-dark;
+    @apply bg-info text-white ring-info hover:bg-info-dark focus:border-info;
   }
 
   .btn-warning {
-    @apply bg-warning text-white ring-warning hover:bg-warning-dark;
+    @apply bg-warning text-white ring-warning hover:bg-warning-dark focus:border-warning;
   }
 
   .btn-gray {
-    @apply bg-light text-dark ring-light hover:bg-medium;
+    @apply bg-light text-dark ring-light hover:bg-medium focus:border-gray;
   }
 
   /* ----- */
