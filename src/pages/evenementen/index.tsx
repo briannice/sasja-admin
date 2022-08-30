@@ -1,4 +1,5 @@
 import OverviewCollection from '@/components/hoc/OverviewCollection'
+import SwitchHandler from '@/components/SwitchHandler'
 import { EventDocument } from '@/types/documents'
 import { timestampToTableString } from '@/utils/date'
 import React from 'react'
@@ -28,6 +29,9 @@ export default function EventOverviewPage() {
                 </td>
                 <td>
                   <time>{timestampToTableString(data.updated)}</time>
+                </td>
+                <td>
+                  <SwitchHandler col="events" id={id} initial={data.public} name="public" />
                 </td>
               </tr>
             ))}

@@ -3,6 +3,7 @@ import { db } from '@/services/firebase'
 import { FirebaseError } from 'firebase/app'
 import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore'
 import React, { ReactNode, useEffect, useState } from 'react'
+import { RiAddLine } from 'react-icons/ri'
 
 type RenderProps<T> = {
   documents: T[]
@@ -33,7 +34,13 @@ export default function OverviewCollection<T>({ children, col, name }: Props<T>)
   return (
     <>
       <h1 className="sr-only">{name}</h1>
-      {children({ documents })}
+      <div>
+        <button className="btn btn-text-icon btn-primary">
+          <span>Nieuw</span>
+          <RiAddLine />
+        </button>
+      </div>
+      <div className="mt-8">{children({ documents })}</div>
     </>
   )
 }
