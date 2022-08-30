@@ -4,12 +4,13 @@ import ImageInput from '@/components/form/ImageInput'
 import SwitchInput from '@/components/form/SwitchInput'
 import TextInput from '@/components/form/TextInput'
 import EditDocument from '@/components/hoc/EditDocument'
+import { COL_EVENTS } from '@/services/firebase/firestore'
 import { EventDocumentData } from '@/types/documents'
 import React from 'react'
 
 export default function EventEditPage() {
   return (
-    <EditDocument<EventDocumentData> col="events" name="Evenement">
+    <EditDocument<EventDocumentData> col={COL_EVENTS} name="Evenement">
       {({ document, id, setDocument }) => (
         <>
           <TextInput
@@ -43,7 +44,7 @@ export default function EventEditPage() {
               onChange={(v) => setDocument({ ...document, public: v })}
             />
           </div>
-          <ImageInput id={id} name="Banner" path="events" />
+          <ImageInput id={id} name="Banner" path={COL_EVENTS} />
           <TextEditor
             value={document.content}
             onChange={(v) => setDocument({ ...document, content: v })}

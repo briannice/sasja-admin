@@ -1,13 +1,14 @@
 import ActionButtons from '@/components/ActionButtons'
 import OverviewCollection from '@/components/hoc/OverviewCollection'
 import SwitchHandler from '@/components/SwitchHandler'
+import { COL_EVENTS } from '@/services/firebase/firestore'
 import { EventDocument } from '@/types/documents'
 import { timestampToTableString } from '@/utils/date'
 import React from 'react'
 
 export default function EventOverviewPage() {
   return (
-    <OverviewCollection<EventDocument> col="events" name="evenementen">
+    <OverviewCollection<EventDocument> col={COL_EVENTS} name="evenementen">
       {({ documents }) => (
         <table>
           <thead>
@@ -32,7 +33,7 @@ export default function EventOverviewPage() {
                   <time>{timestampToTableString(data.updated)}</time>
                 </td>
                 <td>
-                  <SwitchHandler col="events" id={id} initial={data.public} name="public" />
+                  <SwitchHandler col={COL_EVENTS} id={id} initial={data.public} name="public" />
                 </td>
                 <td>
                   <ActionButtons edit={`/evenementen/${id}`} view="" />
