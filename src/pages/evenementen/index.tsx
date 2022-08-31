@@ -13,7 +13,7 @@ export default function EventOverviewPage() {
       create={DOC_EVENTS}
       name="evenementen"
     >
-      {({ documents }) => (
+      {({ deleteHandler, documents }) => (
         <table>
           <thead>
             <tr>
@@ -25,7 +25,7 @@ export default function EventOverviewPage() {
             </tr>
           </thead>
           <tbody>
-            {documents.map(({ id, data }) => (
+            {documents.map(({ id, data }, i) => (
               <tr key={id}>
                 <td>
                   <p>{data.name}</p>
@@ -40,7 +40,7 @@ export default function EventOverviewPage() {
                   <SwitchHandler col={COL_EVENTS} id={id} initial={data.public} name="public" />
                 </td>
                 <td>
-                  <ActionButtons url={`/evenementen/${id}`} />
+                  <ActionButtons deleteHandler={deleteHandler} i={i} url={`/evenementen/${id}`} />
                 </td>
               </tr>
             ))}

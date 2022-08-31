@@ -2,7 +2,17 @@ import Loading from '@/components/Loading'
 import { db } from '@/services/firebase'
 import { BaseDocument, BaseDocumentData } from '@/types/documents'
 import { FirebaseError } from 'firebase/app'
-import { addDoc, collection, getDocs, limit, orderBy, query, startAfter } from 'firebase/firestore'
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  startAfter,
+} from 'firebase/firestore'
 import { useRouter } from 'next/router'
 import React, { MouseEventHandler, ReactNode, useEffect, useState } from 'react'
 import { RiAddLine, RiArrowLeftSLine, RiMoreLine } from 'react-icons/ri'
@@ -10,6 +20,7 @@ import { RiAddLine, RiArrowLeftSLine, RiMoreLine } from 'react-icons/ri'
 const PAGE_SIZE = 10
 
 type RenderProps<T> = {
+  deleteHandler: (i: number) => void
   documents: T[]
 }
 
@@ -87,6 +98,17 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
       .catch((err) => setError(err))
   }
 
+  const deleteHandler = (i: number) => {
+    const document = documents[i]
+    if (!document) return
+    deleteDoc(doc(db, col, document.id))
+      .then(() => {
+        const splicedDocuments = [...documents].filter((d) => d.id !== document.id)
+        setDocuments(splicedDocuments)
+      })
+      .catch((err) => setError(err))
+  }
+
   return (
     <>
       <h1 className="sr-only">{name}</h1>
@@ -99,7 +121,7 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
           <RiAddLine />
         </button>
       </div>
-      {!error && <div className="mt-8">{children({ documents })}</div>}
+      {!error && <div className="mt-8">{children({ deleteHandler, documents })}</div>}
       {hasMoreDocuments && (
         <div className="mt-8 flex justify-center">
           <button onClick={loadMoreHandler} className="btn btn-text-icon btn-primary">
