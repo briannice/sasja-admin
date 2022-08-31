@@ -63,13 +63,7 @@ export default function EditDocument<T>({ children, col, name }: Props<T>) {
     <>
       <h1 className="sr-only">{name}</h1>
       <div className="flex">
-        <button
-          onClick={() => {
-            setIsLoading(true)
-            router.back()
-          }}
-          className="btn btn-primary mr-8 block rounded-full p-1"
-        >
+        <button onClick={() => router.back()} className="btn btn-icon-lg btn-primary mr-8">
           <RiArrowLeftSLine className="h-8 w-8" />
         </button>
         <button onClick={updateDocument} className="btn btn-text-icon btn-primary mr-auto">

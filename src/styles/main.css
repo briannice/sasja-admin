@@ -113,6 +113,14 @@
     @apply h-3 w-3;
   }
 
+  .btn-icon-lg {
+    @apply rounded-full p-1;
+  }
+
+  .btn-icon-lg > svg {
+    @apply h-8 w-8;
+  }
+
   .btn-primary {
     @apply bg-primary text-white ring-primary hover:bg-primary-dark focus:border-primary;
   }

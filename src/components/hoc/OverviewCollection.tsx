@@ -4,7 +4,7 @@ import { FirebaseError } from 'firebase/app'
 import { addDoc, collection, getDocs, limit, orderBy, query } from 'firebase/firestore'
 import { useRouter } from 'next/router'
 import React, { MouseEventHandler, ReactNode, useEffect, useState } from 'react'
-import { RiAddLine } from 'react-icons/ri'
+import { RiAddLine, RiArrowLeftSLine } from 'react-icons/ri'
 
 type RenderProps<T> = {
   documents: T[]
@@ -54,7 +54,10 @@ export default function OverviewCollection<T, U>({ children, col, create, name }
   return (
     <>
       <h1 className="sr-only">{name}</h1>
-      <div>
+      <div className="flex justify-between">
+        <button onClick={() => router.back()} className="btn btn-icon-lg btn-primary">
+          <RiArrowLeftSLine />
+        </button>
         <button onClick={createHandler} className="btn btn-text-icon btn-primary">
           <span>Nieuw</span>
           <RiAddLine />
