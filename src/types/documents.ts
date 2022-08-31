@@ -1,13 +1,13 @@
 import { Timestamp } from 'firebase/firestore'
 
-export type BaseDocument<T> = {
-  id: string
-  data: T
-}
-
 export type BaseDocumentData = {
   created: Timestamp
   updated: Timestamp
+}
+
+export type BaseDocument<T> = {
+  id: string
+  data: BaseDocumentData & T
 }
 
 export type EventDocumentData = BaseDocumentData & {
