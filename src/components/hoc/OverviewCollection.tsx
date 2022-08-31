@@ -63,7 +63,7 @@ export default function OverviewCollection<T, U>({ children, col, create, name }
           <RiAddLine />
         </button>
       </div>
-      <div className="mt-8">{children({ documents })}</div>
+      {!error && <div className="mt-8">{children({ documents })}</div>}
     </>
   )
 }
