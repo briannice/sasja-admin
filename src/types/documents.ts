@@ -65,6 +65,8 @@ export type NewsDocumentData = BaseDocumentData & {
   time: Timestamp
   content: string
   tag: string
+  public: boolean
+  pinned: boolean
 }
 
 export type NewsDocument = BaseDocument<NewsDocumentData>
