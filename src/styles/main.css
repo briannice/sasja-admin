@@ -106,11 +106,11 @@
   }
 
   .btn-icon-sm {
-    @apply rounded-full p-1.5;
+    @apply rounded-full border p-1;
   }
 
   .btn-icon-sm > svg {
-    @apply h-3 w-3;
+    @apply h-4 w-4;
   }
 
   .btn-icon-lg {
@@ -122,23 +122,23 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-white ring-primary hover:bg-primary-dark focus:border-primary;
+    @apply border-primary bg-primary text-white ring-primary hover:bg-primary-dark focus:border-primary;
   }
 
   .btn-error {
-    @apply bg-error text-white ring-error hover:bg-error-dark focus:border-error;
+    @apply border-error bg-error text-white ring-error hover:bg-error-dark focus:border-error;
   }
 
   .btn-info {
-    @apply bg-info text-white ring-info hover:bg-info-dark focus:border-info;
+    @apply border-info bg-info text-white ring-info hover:bg-info-dark focus:border-info;
   }
 
   .btn-warning {
-    @apply bg-warning text-white ring-warning hover:bg-warning-dark focus:border-warning;
+    @apply border-warning bg-warning text-white ring-warning hover:bg-warning-dark focus:border-warning;
   }
 
   .btn-gray {
-    @apply bg-light text-dark ring-light hover:bg-medium focus:border-gray;
+    @apply border-gray bg-light text-dark ring-light hover:bg-medium focus:border-gray;
   }
 
   /* ----- */

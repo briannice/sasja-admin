@@ -1,12 +1,26 @@
 import Loading from '@/components/Loading'
 import { db } from '@/services/firebase'
+import { BaseDocument, BaseDocumentData } from '@/types/documents'
 import { FirebaseError } from 'firebase/app'
-import { addDoc, collection, getDocs, limit, orderBy, query } from 'firebase/firestore'
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  startAfter,
+} from 'firebase/firestore'
 import { useRouter } from 'next/router'
 import React, { MouseEventHandler, ReactNode, useEffect, useState } from 'react'
-import { RiAddLine, RiArrowLeftSLine } from 'react-icons/ri'
+import { RiAddLine, RiArrowLeftSLine, RiMoreLine } from 'react-icons/ri'
+
+const PAGE_SIZE = 10
 
 type RenderProps<T> = {
+  deleteHandler: (i: number) => void
   documents: T[]
 }
 
@@ -17,19 +31,28 @@ type Props<T, U> = {
   name: string
 }
 
-export default function OverviewCollection<T, U>({ children, col, create, name }: Props<T, U>) {
+export default function OverviewCollection<T extends BaseDocument<U>, U extends BaseDocumentData>({
+  children,
+  col,
+  create,
+  name,
+}: Props<T, U>) {
   const [documents, setDocuments] = useState<T[] | null>()
   const [error, setError] = useState<FirebaseError | null>(null)
+
   const [isLoading, setIsLoading] = useState(false)
+  const [hasMoreDocuments, setHasMoreDocuments] = useState(true)
 
   const router = useRouter()
 
   useEffect(() => {
-    getDocs(query(collection(db, col), orderBy('updated', 'desc'), limit(10)))
+    getDocs(query(collection(db, col), orderBy('updated', 'desc'), limit(PAGE_SIZE)))
       .then((docs) => {
-        const result: T[] = []
-        docs.forEach((doc) => result.push({ id: doc.id, data: { ...doc.data() } } as unknown as T))
+        const result = docs.docs.map(
+          (doc) => ({ id: doc.id, data: { ...doc.data() } } as unknown as T)
+        )
         setDocuments(result)
+        setHasMoreDocuments(result.length === PAGE_SIZE)
       })
       .catch((err) => setError(err))
   }, [col])
@@ -37,8 +60,8 @@ export default function OverviewCollection<T, U>({ children, col, create, name }
   if (!documents || isLoading) return <Loading />
 
   const createHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
-    setIsLoading(true)
     e.preventDefault()
+    setIsLoading(true)
     addDoc(collection(db, col), create)
       .then((doc) => {
         const id = doc.id
@@ -48,7 +71,42 @@ export default function OverviewCollection<T, U>({ children, col, create, name }
       .catch((err) => {
         setError(err)
         setIsLoading(false)
+        setHasMoreDocuments(false)
       })
+  }
+
+  const loadMoreHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+
+    if (documents.length <= 0) return
+    const lastUpdated = documents[documents.length - 1].data.updated
+    getDocs(
+      query(
+        collection(db, col),
+        orderBy('updated', 'desc'),
+        startAfter(lastUpdated),
+        limit(PAGE_SIZE)
+      )
+    )
+      .then((docs) => {
+        const result = docs.docs.map(
+          (doc) => ({ id: doc.id, data: { ...doc.data() } } as unknown as T)
+        )
+        setDocuments([...documents, ...result])
+        setHasMoreDocuments(result.length === PAGE_SIZE)
+      })
+      .catch((err) => setError(err))
+  }
+
+  const deleteHandler = (i: number) => {
+    const document = documents[i]
+    if (!document) return
+    deleteDoc(doc(db, col, document.id))
+      .then(() => {
+        const splicedDocuments = [...documents].filter((d) => d.id !== document.id)
+        setDocuments(splicedDocuments)
+      })
+      .catch((err) => setError(err))
   }
 
   return (
@@ -63,7 +121,15 @@ export default function OverviewCollection<T, U>({ children, col, create, name }
           <RiAddLine />
         </button>
       </div>
-      {!error && <div className="mt-8">{children({ documents })}</div>}
+      {!error && <div className="mt-8">{children({ deleteHandler, documents })}</div>}
+      {hasMoreDocuments && (
+        <div className="mt-8 flex justify-center">
+          <button onClick={loadMoreHandler} className="btn btn-text-icon btn-primary">
+            <span>Meer</span>
+            <RiMoreLine />
+          </button>
+        </div>
+      )}
     </>
   )
 }
