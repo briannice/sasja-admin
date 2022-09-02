@@ -22,7 +22,7 @@ import Text from '@tiptap/extension-text'
 import Underline from '@tiptap/extension-underline'
 import { EditorContent, useEditor } from '@tiptap/react'
 import clsx from 'clsx'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 type Props = {
   onChange: (v: string) => void
@@ -56,7 +56,6 @@ export default function TextEditor({ onChange, value, className }: Props) {
 
     onUpdate: ({ editor }) => {
       const html = editor.getHTML()
-      console.log(html)
       onChange(html)
     },
 
@@ -66,6 +65,12 @@ export default function TextEditor({ onChange, value, className }: Props) {
       },
     },
   })
+
+  useEffect(() => {
+    if (!editor) return
+    editor.off('update')
+    editor.on('update', ({ editor: updatedEditor }) => onChange(updatedEditor.getHTML()))
+  }, [editor, onChange])
 
   if (!editor) return <p>Loading</p>
 

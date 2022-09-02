@@ -21,7 +21,7 @@ export default function ImageInput({ id, name, path, className }: Props) {
   useEffect(() => {
     downloadImage(`/${path}/${id}`, 'small')
       .then((url) => setUrl(url))
-      .catch((err) => console.error(err))
+      .catch(() => setIsLoading(true))
       .finally(() => setIsLoading(false))
   }, [path, id])
 
