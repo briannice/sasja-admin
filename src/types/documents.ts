@@ -46,7 +46,8 @@ export type TeamDocument = BaseDocument<TeamDocumentData>
 //                                          PLAYER                                                //
 // ---------------------------------------------------------------------------------------------- //
 export type PlayerDocumentData = BaseDocumentData & {
-  name: string
+  firstname: string
+  lastname: string
   position: string
   description: string
   backNumber: number
