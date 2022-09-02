@@ -1,4 +1,4 @@
-import { EventDocumentData } from '@/types/documents'
+import { EventDocumentData, NewsDocumentData } from '@/types/documents'
 import { Timestamp } from 'firebase/firestore'
 
 // Collection names
@@ -20,5 +20,16 @@ export const DOC_EVENTS: EventDocumentData = {
   name: '',
   public: false,
   time: Timestamp.now(),
+  updated: Timestamp.now(),
+}
+
+export const DOC_NEWS: NewsDocumentData = {
+  content: '',
+  created: Timestamp.now(),
+  pinned: false,
+  public: false,
+  tag: 'CLUB',
+  time: Timestamp.now(),
+  title: '',
   updated: Timestamp.now(),
 }

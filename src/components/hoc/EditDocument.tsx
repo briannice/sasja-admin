@@ -62,7 +62,7 @@ export default function EditDocument<T>({ children, col, name }: Props<T>) {
   return (
     <>
       <h1 className="sr-only">{name}</h1>
-      <div className="flex">
+      <div className="sticky inset-x-0 top-0 z-20 flex bg-white py-8">
         <button onClick={() => router.back()} className="btn btn-icon-lg btn-primary mr-8">
           <RiArrowLeftSLine className="h-8 w-8" />
         </button>
@@ -89,7 +89,7 @@ export default function EditDocument<T>({ children, col, name }: Props<T>) {
           <></>
         )}
       </div>
-      <form className="mt-8 grid grid-cols-2 gap-8">{children({ document, id, setDocument })}</form>
+      <form className="grid grid-cols-2 gap-8">{children({ document, id, setDocument })}</form>
     </>
   )
 }

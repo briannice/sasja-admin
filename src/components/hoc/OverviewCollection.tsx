@@ -112,7 +112,7 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
   return (
     <>
       <h1 className="sr-only">{name}</h1>
-      <div className="flex justify-between">
+      <div className="flex justify-between pt-8">
         <button onClick={() => router.back()} className="btn btn-icon-lg btn-primary">
           <RiArrowLeftSLine />
         </button>

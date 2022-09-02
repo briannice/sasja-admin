@@ -62,7 +62,7 @@ export default function TextEditor({ onChange, value, className }: Props) {
 
     editorProps: {
       attributes: {
-        class: 'focus:outline-none h-[600px] p-8 text-editor',
+        class: 'focus:outline-none min-h-[600px] p-8 text-editor',
       },
     },
   })
