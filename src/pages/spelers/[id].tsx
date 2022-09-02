@@ -11,6 +11,7 @@ import { PlayerDocumentData } from '@/types/documents'
 import React from 'react'
 
 export default function PlayerEditPage() {
+  console.log('render')
   return (
     <EditDocument<PlayerDocumentData> col={COL_PLAYERS} name="Speler">
       {({ document, id, setDocument }) => (
