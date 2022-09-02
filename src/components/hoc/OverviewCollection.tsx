@@ -27,8 +27,8 @@ type RenderProps<T> = {
 type Props<T, U> = {
   children: (props: RenderProps<T>) => ReactNode
   col: string
-  create: U
   name: string
+  create?: U | null
 }
 
 export default function OverviewCollection<T extends BaseDocument<U>, U extends BaseDocumentData>({
@@ -116,10 +116,12 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
         <button onClick={() => router.back()} className="btn btn-icon-lg btn-primary">
           <RiArrowLeftSLine />
         </button>
-        <button onClick={createHandler} className="btn btn-text-icon btn-primary">
-          <span>Nieuw</span>
-          <RiAddLine />
-        </button>
+        {create && (
+          <button onClick={createHandler} className="btn btn-text-icon btn-primary">
+            <span>Nieuw</span>
+            <RiAddLine />
+          </button>
+        )}
       </div>
       {!error && <div className="mt-8">{children({ deleteHandler, documents })}</div>}
       {hasMoreDocuments && (
