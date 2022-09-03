@@ -39,6 +39,11 @@ export default function PlayerEditPage() {
               value={document.birthday}
               onChange={(v) => setDocument({ ...document, birthday: v })}
             />
+            <DateInput
+              name="Inschrijvingsdatum"
+              value={document.registration}
+              onChange={(v) => setDocument({ ...document, registration: v })}
+            />
             <SelectCollection
               col={COL_TEAMS}
               def={FK_TEAMS}

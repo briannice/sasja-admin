@@ -60,6 +60,7 @@ export const DOC_PLAYERS: PlayerDocumentData = {
   lastname: '',
   position: '',
   public: false,
+  registration: Timestamp.now(),
   teamId: FK_TEAMS,
   updated: Timestamp.now(),
 }
