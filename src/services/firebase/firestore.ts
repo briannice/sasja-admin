@@ -1,5 +1,6 @@
 import {
   EventDocumentData,
+  MatchReportDocumentData,
   NewsDocumentData,
   PlayerDocumentData,
   TeamDocumentData,
@@ -12,9 +13,7 @@ export const COL_MATCHREPORT = 'matchreport'
 export const COL_NEWS = 'news'
 export const COL_TEAMS = 'teams'
 export const COL_PLAYERS = 'players'
-export const COL_GAMES = 'games'
 export const COL_STAFF = 'staff'
-export const COL_OPPONENTS = 'opponents'
 
 // Defualt foreign keys
 export const FK_TEAMS = 'Geen team'
@@ -63,4 +62,16 @@ export const DOC_PLAYERS: PlayerDocumentData = {
   registration: Timestamp.now(),
   teamId: FK_TEAMS,
   updated: Timestamp.now(),
+}
+
+export const DOC_MATCHREPORT: MatchReportDocumentData = {
+  content: '',
+  created: Timestamp.now(),
+  tag: 'COMPETITIE',
+  teamId: FK_TEAMS,
+  time: Timestamp.now(),
+  updated: Timestamp.now(),
+  writer: '',
+  home: true,
+  score: '',
 }

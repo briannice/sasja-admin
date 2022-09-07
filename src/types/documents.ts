@@ -78,24 +78,16 @@ export type NewsDocument = BaseDocument<NewsDocumentData>
 //                                        MATCHREPORT                                             //
 // ---------------------------------------------------------------------------------------------- //
 export type MatchReportDocumentData = BaseDocumentData & {
-  content: string
   time: Timestamp
-
+  tag: string
+  writer: string
+  content: string
   teamId: string
-  opponentId: string
+  home: boolean
+  score: string
 }
 
 export type MatchReportDocument = BaseDocument<MatchReportDocumentData>
-
-// ---------------------------------------------------------------------------------------------- //
-//                                           GAME                                                 //
-// ---------------------------------------------------------------------------------------------- //
-export type GameDocumentData = BaseDocumentData & {
-  teamId: string
-  opponentId: string
-}
-
-export type GameDocument = BaseDocument<GameDocumentData>
 
 // ---------------------------------------------------------------------------------------------- //
 //                                           STAFF                                                //
@@ -105,12 +97,3 @@ export type StaffDocumentData = BaseDocumentData & {
 }
 
 export type StaffDocument = BaseDocument<StaffDocumentData>
-
-// ---------------------------------------------------------------------------------------------- //
-//                                         OPPONENT                                               //
-// ---------------------------------------------------------------------------------------------- //
-export type OpponentDocumentData = BaseDocumentData & {
-  name: string
-}
-
-export type OpponentDocument = BaseDocument<OpponentDocumentData>
