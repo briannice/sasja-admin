@@ -75,6 +75,16 @@ export type NewsDocumentData = BaseDocumentData & {
 export type NewsDocument = BaseDocument<NewsDocumentData>
 
 // ---------------------------------------------------------------------------------------------- //
+//                                          OPPONENT                                              //
+// ---------------------------------------------------------------------------------------------- //
+export type OpponentDocumentData = BaseDocumentData & {
+  name: string
+  short: string
+}
+
+export type OpponentDocument = BaseDocument<OpponentDocumentData>
+
+// ---------------------------------------------------------------------------------------------- //
 //                                        MATCHREPORT                                             //
 // ---------------------------------------------------------------------------------------------- //
 export type MatchReportDocumentData = BaseDocumentData & {

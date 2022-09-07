@@ -6,6 +6,7 @@ import { signOut } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import React from 'react'
 import {
+  RiArrowLeftRightLine,
   RiCalendarLine,
   RiDashboardLine,
   RiGameLine,
@@ -20,9 +21,10 @@ import {
 const links = [
   { name: 'Dashboard', url: '/dashboard', icon: RiDashboardLine },
   { name: 'Evenementen', url: '/evenementen', icon: RiCalendarLine },
-  { name: 'Matchverslagen', url: '/matchverslagen', icon: RiGameLine },
   { name: 'Nieuws', url: '/nieuws', icon: RiNewspaperLine },
+  { name: 'Matchverslagen', url: '/matchverslagen', icon: RiGameLine },
   { name: 'Teams', url: '/teams', icon: RiTeamLine },
+  { name: 'Tegenstanders', url: '/tegenstanders', icon: RiArrowLeftRightLine },
   { name: 'Spelers', url: '/spelers', icon: RiRunLine },
   { name: 'Medewerkers', url: '/medewerkers', icon: RiShieldUserLine },
 ]
