@@ -2,7 +2,7 @@ import ActionButtons from '@/components/ActionButtons'
 import OverviewCollection from '@/components/hoc/OverviewCollection'
 import Loading from '@/components/Loading'
 import SwitchHandler from '@/components/SwitchHandler'
-import { db } from '@/services/firebase'
+import useCollection from '@/hooks/useCollection'
 import {
   COL_MATCHREPORT,
   COL_OPPONENTS,
@@ -16,35 +16,11 @@ import {
   TeamDocument,
 } from '@/types/documents'
 import { timestampToString, timestampToTableString } from '@/utils/date'
-import { collection, getDocs, query } from 'firebase/firestore'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 export default function MatchReportPage() {
-  const [teams, setTeams] = useState<TeamDocument[] | null>(null)
-  const [opponents, setOpponents] = useState<OpponentDocument[] | null>(null)
-
-  const router = useRouter()
-
-  useEffect(() => {
-    getDocs(query(collection(db, COL_TEAMS)))
-      .then((docs) => {
-        const result = docs.docs.map(
-          (doc) => ({ id: doc.id, data: { ...doc.data() } } as unknown as TeamDocument)
-        )
-        setTeams(result)
-      })
-      .catch(() => router.replace('/'))
-
-    getDocs(query(collection(db, COL_OPPONENTS)))
-      .then((docs) => {
-        const result = docs.docs.map(
-          (doc) => ({ id: doc.id, data: { ...doc.data() } } as unknown as OpponentDocument)
-        )
-        setOpponents(result)
-      })
-      .catch(() => router.replace('/'))
-  }, [router])
+  const [teams, errorTeams] = useCollection<TeamDocument>(COL_TEAMS)
+  const [opponents, errorOpponents] = useCollection<OpponentDocument>(COL_OPPONENTS)
 
   if (!teams || !opponents) return <Loading />
 
