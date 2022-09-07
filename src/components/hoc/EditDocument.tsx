@@ -43,10 +43,16 @@ export default function EditDocument<T>({ children, col, name }: Props<T>) {
 
   useEffect(() => {
     getDoc(doc(db, col, id))
-      .then((d) => setDocument({ ...d.data() } as unknown as T))
+      .then((d) => {
+        if (d.exists()) {
+          setDocument({ ...d.data() } as unknown as T)
+        } else {
+          router.push('/404')
+        }
+      })
       .catch((err) => setError(err))
       .finally(() => setIsLoading(false))
-  }, [col, id])
+  }, [col, id, router])
 
   if (!document) return <Loading />
 

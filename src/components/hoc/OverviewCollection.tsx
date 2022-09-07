@@ -1,5 +1,6 @@
 import Loading from '@/components/Loading'
 import { db } from '@/services/firebase'
+import { deleteImage } from '@/services/firebase/storage'
 import { BaseDocument, BaseDocumentData } from '@/types/documents'
 import { FirebaseError } from 'firebase/app'
 import {
@@ -77,7 +78,6 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
 
   const loadMoreHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
-
     if (documents.length <= 0) return
     const lastUpdated = documents[documents.length - 1].data.updated
     getDocs(
@@ -107,6 +107,7 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
         setDocuments(splicedDocuments)
       })
       .catch((err) => setError(err))
+    deleteImage(`/${col}/${document.id}`).catch((err) => setError(err))
   }
 
   return (

@@ -10,7 +10,6 @@ import {
   RiCalendarLine,
   RiDashboardLine,
   RiGameLine,
-  RiGamepadLine,
   RiGlobalLine,
   RiLogoutCircleRLine,
   RiNewspaperLine,
@@ -22,13 +21,12 @@ import {
 const links = [
   { name: 'Dashboard', url: '/dashboard', icon: RiDashboardLine },
   { name: 'Evenementen', url: '/evenementen', icon: RiCalendarLine },
-  { name: 'Matchverslagen', url: '/matchverslagen', icon: RiGameLine },
   { name: 'Nieuws', url: '/nieuws', icon: RiNewspaperLine },
+  { name: 'Matchverslagen', url: '/matchverslagen', icon: RiGameLine },
   { name: 'Teams', url: '/teams', icon: RiTeamLine },
+  { name: 'Tegenstanders', url: '/tegenstanders', icon: RiArrowLeftRightLine },
   { name: 'Spelers', url: '/spelers', icon: RiRunLine },
-  { name: 'Wedstrijden', url: '/wedstrijden', icon: RiGamepadLine },
   { name: 'Medewerkers', url: '/medewerkers', icon: RiShieldUserLine },
-  { name: 'Tegenstanders', url: '/medewerkers', icon: RiArrowLeftRightLine },
 ]
 
 export default function Sidebar() {

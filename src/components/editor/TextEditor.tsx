@@ -75,16 +75,18 @@ export default function TextEditor({ onChange, value, className }: Props) {
   if (!editor) return <p>Loading</p>
 
   return (
-    <div className={clsx('divide-y divide-medium rounded border border-medium', className)}>
-      <div className="flex space-x-12 rounded px-8 py-4">
-        <HistoryButtons editor={editor} />
-        <TextButtons editor={editor} />
-        <MarkButtons editor={editor} />
-        <ListButtons editor={editor} />
-        <TableButtons editor={editor} />
-      </div>
-      <div className="overflow-y-scroll">
-        <EditorContent editor={editor} />
+    <div className={clsx(className)}>
+      <div className="divide-y divide-medium rounded border border-medium">
+        <div className="flex space-x-12 rounded px-8 py-4">
+          <HistoryButtons editor={editor} />
+          <TextButtons editor={editor} />
+          <MarkButtons editor={editor} />
+          <ListButtons editor={editor} />
+          <TableButtons editor={editor} />
+        </div>
+        <div className="overflow-y-scroll">
+          <EditorContent editor={editor} />
+        </div>
       </div>
     </div>
   )

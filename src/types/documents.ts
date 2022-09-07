@@ -52,6 +52,7 @@ export type PlayerDocumentData = BaseDocumentData & {
   description: string
   backNumber: number
   birthday: Timestamp
+  registration: Timestamp
   public: boolean
 
   teamId: string
@@ -74,27 +75,32 @@ export type NewsDocumentData = BaseDocumentData & {
 export type NewsDocument = BaseDocument<NewsDocumentData>
 
 // ---------------------------------------------------------------------------------------------- //
+//                                          OPPONENT                                              //
+// ---------------------------------------------------------------------------------------------- //
+export type OpponentDocumentData = BaseDocumentData & {
+  name: string
+  short: string
+  logo: string
+}
+
+export type OpponentDocument = BaseDocument<OpponentDocumentData>
+
+// ---------------------------------------------------------------------------------------------- //
 //                                        MATCHREPORT                                             //
 // ---------------------------------------------------------------------------------------------- //
 export type MatchReportDocumentData = BaseDocumentData & {
-  content: string
   time: Timestamp
-
-  teamId: string
+  tag: string
+  writer: string
+  home: boolean
+  score: { sasja: number; opponent: number }[]
+  content: string
   opponentId: string
+  teamId: string
+  public: boolean
 }
 
 export type MatchReportDocument = BaseDocument<MatchReportDocumentData>
-
-// ---------------------------------------------------------------------------------------------- //
-//                                           GAME                                                 //
-// ---------------------------------------------------------------------------------------------- //
-export type GameDocumentData = BaseDocumentData & {
-  teamId: string
-  opponentId: string
-}
-
-export type GameDocument = BaseDocument<GameDocumentData>
 
 // ---------------------------------------------------------------------------------------------- //
 //                                           STAFF                                                //
@@ -104,12 +110,3 @@ export type StaffDocumentData = BaseDocumentData & {
 }
 
 export type StaffDocument = BaseDocument<StaffDocumentData>
-
-// ---------------------------------------------------------------------------------------------- //
-//                                         OPPONENT                                               //
-// ---------------------------------------------------------------------------------------------- //
-export type OpponentDocumentData = BaseDocumentData & {
-  name: string
-}
-
-export type OpponentDocument = BaseDocument<OpponentDocumentData>

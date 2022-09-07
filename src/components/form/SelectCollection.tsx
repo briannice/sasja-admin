@@ -10,9 +10,18 @@ type Props = {
   name: string
   onChange: (v: string) => void
   value: string
+  className?: string | undefined
 }
 
-export default function SelectCollection({ col, def, field, name, onChange, value }: Props) {
+export default function SelectCollection({
+  col,
+  def,
+  field,
+  name,
+  onChange,
+  value,
+  className,
+}: Props) {
   const [values, setValues] = useState<{ key: string; value: string }[] | null>(null)
 
   useEffect(() => {
@@ -29,5 +38,13 @@ export default function SelectCollection({ col, def, field, name, onChange, valu
 
   if (!values) return <></>
 
-  return <SelectInput name={name} value={value} onChange={onChange} values={values} />
+  return (
+    <SelectInput
+      name={name}
+      value={value}
+      onChange={onChange}
+      values={values}
+      className={className}
+    />
+  )
 }
