@@ -1,13 +1,14 @@
+import Error from '@/components/Error'
 import Loading from '@/components/Loading'
 import { db } from '@/services/firebase'
 import { deleteImage } from '@/services/firebase/storage'
 import { BaseDocument, BaseDocumentData } from '@/types/documents'
-import { FirebaseError } from 'firebase/app'
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
+  FirestoreError,
   getDocs,
   limit,
   orderBy,
@@ -30,22 +31,34 @@ type Props<T, U> = {
   col: string
   name: string
   create?: U | null
+  errs?: FirestoreError[]
+  loading?: boolean
 }
 
 export default function OverviewCollection<T extends BaseDocument<U>, U extends BaseDocumentData>({
   children,
   col,
-  create,
   name,
+  create = null,
+  errs = [],
+  loading = false,
 }: Props<T, U>) {
-  const [documents, setDocuments] = useState<T[] | null>()
-  const [error, setError] = useState<FirebaseError | null>(null)
+  // List of documents of the given collection or null if no documents are fetched.
+  const [documents, setDocuments] = useState<T[] | null>(null)
 
-  const [isLoading, setIsLoading] = useState(false)
+  // List of Firestore errors.
+  const [errors, setErrors] = useState<FirestoreError[]>(errs)
+
+  // Boolean indicating whether the component is in a loading state.
+  const [isLoading, setIsLoading] = useState(loading)
+
+  // Boolean indicating whether there can be more documents fetched.
   const [hasMoreDocuments, setHasMoreDocuments] = useState(true)
 
+  // Next.js router object
   const router = useRouter()
 
+  // Load initial documents
   useEffect(() => {
     getDocs(query(collection(db, col), orderBy('updated', 'desc'), limit(PAGE_SIZE)))
       .then((docs) => {
@@ -53,13 +66,19 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
           (doc) => ({ id: doc.id, data: { ...doc.data() } } as unknown as T)
         )
         setDocuments(result)
+        setIsLoading(false && loading)
         setHasMoreDocuments(result.length === PAGE_SIZE)
       })
-      .catch((err) => setError(err))
-  }, [col])
+      .catch((err: FirestoreError) => setErrors((errors) => [...errors, err]))
+  }, [col, loading])
 
+  //
+  if (errors.length > 0) return <Error firestoreErrors={errors} />
+
+  // If there are no documents or the component is in the loading state, show loading screen.
   if (!documents || isLoading) return <Loading />
 
+  // Create a new document for the given collection.
   const createHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
     setIsLoading(true)
@@ -70,12 +89,12 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
         router.push(`${path}/${id}`)
       })
       .catch((err) => {
-        setError(err)
+        setErrors([...errors, err])
         setIsLoading(false)
-        setHasMoreDocuments(false)
       })
   }
 
+  // Load more documents of the given collection.
   const loadMoreHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
     if (documents.length <= 0) return
@@ -95,9 +114,10 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
         setDocuments([...documents, ...result])
         setHasMoreDocuments(result.length === PAGE_SIZE)
       })
-      .catch((err) => setError(err))
+      .catch((err) => setErrors([...errors, err]))
   }
 
+  // Delete a document of the given collection based on the index in the list of documents.
   const deleteHandler = (i: number) => {
     const document = documents[i]
     if (!document) return
@@ -106,8 +126,8 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
         const splicedDocuments = [...documents].filter((d) => d.id !== document.id)
         setDocuments(splicedDocuments)
       })
-      .catch((err) => setError(err))
-    deleteImage(`/${col}/${document.id}`).catch((err) => setError(err))
+      .catch((err) => setErrors([...errors, err]))
+    deleteImage(`/${col}/${document.id}`).catch((err) => console.log(err))
   }
 
   return (
@@ -124,7 +144,7 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
           </button>
         )}
       </div>
-      {!error && <div className="mt-8">{children({ deleteHandler, documents })}</div>}
+      <div className="mt-8">{children({ deleteHandler, documents })}</div>
       {hasMoreDocuments && (
         <div className="mt-8 flex justify-center">
           <button onClick={loadMoreHandler} className="btn btn-text-icon btn-primary">

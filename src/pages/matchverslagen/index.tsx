@@ -1,8 +1,7 @@
 import ActionButtons from '@/components/ActionButtons'
 import OverviewCollection from '@/components/hoc/OverviewCollection'
-import Loading from '@/components/Loading'
 import SwitchHandler from '@/components/SwitchHandler'
-import { db } from '@/services/firebase'
+import useCollection from '@/hooks/useCollection'
 import {
   COL_MATCHREPORT,
   COL_OPPONENTS,
@@ -16,55 +15,38 @@ import {
   TeamDocument,
 } from '@/types/documents'
 import { timestampToString, timestampToTableString } from '@/utils/date'
-import { collection, getDocs, query } from 'firebase/firestore'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import { FirestoreError } from 'firebase/firestore'
+import React from 'react'
 
 export default function MatchReportPage() {
-  const [teams, setTeams] = useState<TeamDocument[] | null>(null)
-  const [opponents, setOpponents] = useState<OpponentDocument[] | null>(null)
-
-  const router = useRouter()
-
-  useEffect(() => {
-    getDocs(query(collection(db, COL_TEAMS)))
-      .then((docs) => {
-        const result = docs.docs.map(
-          (doc) => ({ id: doc.id, data: { ...doc.data() } } as unknown as TeamDocument)
-        )
-        setTeams(result)
-      })
-      .catch(() => router.replace('/'))
-
-    getDocs(query(collection(db, COL_OPPONENTS)))
-      .then((docs) => {
-        const result = docs.docs.map(
-          (doc) => ({ id: doc.id, data: { ...doc.data() } } as unknown as OpponentDocument)
-        )
-        setOpponents(result)
-      })
-      .catch(() => router.replace('/'))
-  }, [router])
-
-  if (!teams || !opponents) return <Loading />
+  const [teams, errorTeams] = useCollection<TeamDocument>(COL_TEAMS)
+  const [opponents, errorOpponents] = useCollection<OpponentDocument>(COL_OPPONENTS)
 
   const getTeamNameById = (id: string) => {
+    if (!teams) return ''
     const index = teams.findIndex((team) => team.id === id)
     if (index === -1) return ''
     return teams[index].data.name
   }
 
   const getOpponentNameById = (id: string) => {
+    if (!opponents) return ''
     const index = opponents.findIndex((opponent) => opponent.id === id)
     if (index === -1) return ''
     return opponents[index].data.name
   }
+
+  const errors: FirestoreError[] = []
+  if (errorTeams) errors.push(errorTeams)
+  if (errorOpponents) errors.push(errorOpponents)
 
   return (
     <OverviewCollection<MatchReportDocument, MatchReportDocumentData>
       col={COL_MATCHREPORT}
       create={DOC_MATCHREPORT}
       name="Matchverslagen"
+      errs={errors}
+      loading={!teams || !opponents}
     >
       {({ deleteHandler, documents }) => (
         <table>
