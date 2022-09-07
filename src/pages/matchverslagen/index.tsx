@@ -1,6 +1,5 @@
 import ActionButtons from '@/components/ActionButtons'
 import OverviewCollection from '@/components/hoc/OverviewCollection'
-import Loading from '@/components/Loading'
 import SwitchHandler from '@/components/SwitchHandler'
 import useCollection from '@/hooks/useCollection'
 import {
@@ -16,31 +15,38 @@ import {
   TeamDocument,
 } from '@/types/documents'
 import { timestampToString, timestampToTableString } from '@/utils/date'
+import { FirestoreError } from 'firebase/firestore'
 import React from 'react'
 
 export default function MatchReportPage() {
   const [teams, errorTeams] = useCollection<TeamDocument>(COL_TEAMS)
   const [opponents, errorOpponents] = useCollection<OpponentDocument>(COL_OPPONENTS)
 
-  if (!teams || !opponents) return <Loading />
-
   const getTeamNameById = (id: string) => {
+    if (!teams) return ''
     const index = teams.findIndex((team) => team.id === id)
     if (index === -1) return ''
     return teams[index].data.name
   }
 
   const getOpponentNameById = (id: string) => {
+    if (!opponents) return ''
     const index = opponents.findIndex((opponent) => opponent.id === id)
     if (index === -1) return ''
     return opponents[index].data.name
   }
+
+  const errors: FirestoreError[] = []
+  if (errorTeams) errors.push(errorTeams)
+  if (errorOpponents) errors.push(errorOpponents)
 
   return (
     <OverviewCollection<MatchReportDocument, MatchReportDocumentData>
       col={COL_MATCHREPORT}
       create={DOC_MATCHREPORT}
       name="Matchverslagen"
+      errs={errors}
+      loading={!teams || !opponents}
     >
       {({ deleteHandler, documents }) => (
         <table>
