@@ -92,10 +92,12 @@ export type MatchReportDocumentData = BaseDocumentData & {
   time: Timestamp
   tag: string
   writer: string
-  content: string
-  teamId: string
   home: boolean
-  score: string
+  score: { sasja: number; opponent: number }[]
+  content: string
+  opponentId: string
+  teamId: string
+  public: boolean
 }
 
 export type MatchReportDocument = BaseDocument<MatchReportDocumentData>

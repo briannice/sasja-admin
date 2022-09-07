@@ -76,7 +76,9 @@ export const DOC_MATCHREPORT: MatchReportDocumentData = {
   updated: Timestamp.now(),
   writer: '',
   home: true,
-  score: '',
+  opponentId: 'Geen tegenstander',
+  score: [],
+  public: false,
 }
 
 export const DOC_OPPONENT: OpponentDocumentData = {
