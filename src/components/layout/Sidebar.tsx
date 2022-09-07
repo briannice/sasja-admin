@@ -6,11 +6,9 @@ import { signOut } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import React from 'react'
 import {
-  RiArrowLeftRightLine,
   RiCalendarLine,
   RiDashboardLine,
   RiGameLine,
-  RiGamepadLine,
   RiGlobalLine,
   RiLogoutCircleRLine,
   RiNewspaperLine,
@@ -26,9 +24,7 @@ const links = [
   { name: 'Nieuws', url: '/nieuws', icon: RiNewspaperLine },
   { name: 'Teams', url: '/teams', icon: RiTeamLine },
   { name: 'Spelers', url: '/spelers', icon: RiRunLine },
-  { name: 'Wedstrijden', url: '/wedstrijden', icon: RiGamepadLine },
   { name: 'Medewerkers', url: '/medewerkers', icon: RiShieldUserLine },
-  { name: 'Tegenstanders', url: '/medewerkers', icon: RiArrowLeftRightLine },
 ]
 
 export default function Sidebar() {
