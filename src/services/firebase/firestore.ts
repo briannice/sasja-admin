@@ -81,6 +81,7 @@ export const DOC_MATCHREPORT: MatchReportDocumentData = {
 
 export const DOC_OPPONENT: OpponentDocumentData = {
   created: Timestamp.now(),
+  logo: '',
   name: '',
   short: '',
   updated: Timestamp.now(),

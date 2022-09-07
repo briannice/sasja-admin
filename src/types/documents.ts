@@ -80,6 +80,7 @@ export type NewsDocument = BaseDocument<NewsDocumentData>
 export type OpponentDocumentData = BaseDocumentData & {
   name: string
   short: string
+  logo: string
 }
 
 export type OpponentDocument = BaseDocument<OpponentDocumentData>
