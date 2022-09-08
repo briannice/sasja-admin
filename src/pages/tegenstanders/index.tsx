@@ -26,8 +26,8 @@ export default function OpponentsPage() {
           <tbody>
             {documents.map(({ data, id }, i) => (
               <tr key={id}>
-                <td>{data.name}</td>
-                <td>{data.short}</td>
+                <td className="font-bold">{data.name}</td>
+                <td className="font-bold">{data.short}</td>
                 <td>
                   <time>{timestampToTableString(data.created)}</time>
                 </td>
