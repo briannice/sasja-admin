@@ -64,8 +64,8 @@ export default function MatchReportPage() {
           <tbody>
             {documents.map(({ data, id }, i) => (
               <tr key={id}>
-                <td>{getTeamNameById(data.teamId)}</td>
-                <td>{getOpponentNameById(data.opponentId)}</td>
+                <td className="font-bold">{getTeamNameById(data.teamId)}</td>
+                <td className="font-bold">{getOpponentNameById(data.opponentId)}</td>
                 <td>
                   <time>{timestampToString(data.time, 'DD/MM')}</time>
                 </td>

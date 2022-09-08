@@ -1,23 +1,18 @@
+import Error from '@/components/Error'
 import Loading from '@/components/Loading'
 import { db } from '@/services/firebase'
-import { FirebaseError } from 'firebase/app'
-import { doc, getDoc, Timestamp, updateDoc } from 'firebase/firestore'
+import { doc, FirestoreError, getDoc, Timestamp, updateDoc } from 'firebase/firestore'
 import { useRouter } from 'next/router'
 import React, {
   Dispatch,
+  FormEventHandler,
   MouseEventHandler,
   ReactNode,
   SetStateAction,
   useEffect,
   useState,
 } from 'react'
-import {
-  RiArrowLeftSLine,
-  RiCheckLine,
-  RiErrorWarningLine,
-  RiLoaderLine,
-  RiSaveLine,
-} from 'react-icons/ri'
+import { RiArrowLeftSLine, RiCheckLine, RiLoaderLine, RiSaveLine } from 'react-icons/ri'
 
 type RenderProps<T> = {
   document: T
@@ -29,11 +24,12 @@ type Props<T> = {
   children: (props: RenderProps<T>) => ReactNode
   col: string
   name: string
+  errs?: FirestoreError[]
 }
 
-export default function EditDocument<T>({ children, col, name }: Props<T>) {
+export default function EditDocument<T>({ children, col, name, errs = [] }: Props<T>) {
   const [document, setDocument] = useState<T | null>(null)
-  const [error, setError] = useState<FirebaseError | null>(null)
+  const [errors, setErrors] = useState<FirestoreError[]>(errs)
 
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
@@ -50,19 +46,30 @@ export default function EditDocument<T>({ children, col, name }: Props<T>) {
           router.push('/404')
         }
       })
-      .catch((err) => setError(err))
+      .catch((err) => setErrors((errors) => [...errors, err]))
       .finally(() => setIsLoading(false))
   }, [col, id, router])
 
+  if (errors.length > 0) return <Error firestoreErrors={errors} />
+
   if (!document) return <Loading />
 
-  const updateDocument: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault()
+  const updateDocument = () => {
     setIsLoading(true)
     updateDoc(doc(db, col, id), { ...document, updated: Timestamp.now() })
       .then(() => setIsSuccess(true))
-      .catch((err) => setError(err))
+      .catch((err) => setErrors([...errors, err]))
       .finally(() => setIsLoading(false))
+  }
+
+  const updateDocumentBySubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault()
+    updateDocument()
+  }
+
+  const updateDocumentByClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+    updateDocument()
   }
 
   return (
@@ -72,7 +79,7 @@ export default function EditDocument<T>({ children, col, name }: Props<T>) {
         <button onClick={() => router.back()} className="btn btn-icon-lg btn-primary mr-8">
           <RiArrowLeftSLine className="h-8 w-8" />
         </button>
-        <button onClick={updateDocument} className="btn btn-text-icon btn-primary mr-auto">
+        <button onClick={updateDocumentByClick} className="btn btn-text-icon btn-primary mr-auto">
           <span>Save</span>
           <RiSaveLine />
         </button>
@@ -86,16 +93,13 @@ export default function EditDocument<T>({ children, col, name }: Props<T>) {
             <span>Success</span>
             <RiCheckLine />
           </div>
-        ) : error ? (
-          <div className="toast toast-error">
-            <span>Oeps, er is iets mis gegaan</span>
-            <RiErrorWarningLine />
-          </div>
         ) : (
           <></>
         )}
       </div>
-      <form className="grid grid-cols-2 gap-8">{children({ document, id, setDocument })}</form>
+      <form onSubmit={updateDocumentBySubmit} className="grid grid-cols-2 gap-8">
+        {children({ document, id, setDocument })}
+      </form>
     </>
   )
 }

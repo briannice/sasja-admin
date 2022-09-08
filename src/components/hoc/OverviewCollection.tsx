@@ -72,7 +72,7 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
       .catch((err: FirestoreError) => setErrors((errors) => [...errors, err]))
   }, [col, loading])
 
-  //
+  // If there are errors, return error page.
   if (errors.length > 0) return <Error firestoreErrors={errors} />
 
   // If there are no documents or the component is in the loading state, show loading screen.
