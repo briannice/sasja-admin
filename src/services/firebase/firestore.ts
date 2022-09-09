@@ -48,7 +48,6 @@ export const DOC_TEAMS: TeamDocumentData = {
   competitions: [],
   created: Timestamp.now(),
   name: '',
-  uid: '',
   updated: Timestamp.now(),
   youth: false,
 }

@@ -32,7 +32,6 @@ export type EventDocument = BaseDocument<EventDocumentData>
 // ---------------------------------------------------------------------------------------------- //
 export type TeamDocumentData = BaseDocumentData & {
   name: string
-  uid: string
   youth: boolean
   competitions: {
     name: string

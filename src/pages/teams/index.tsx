@@ -31,7 +31,7 @@ export default function TeamOverviewPage() {
                     <p>{data.name}</p>
                   </td>
                   <td>
-                    <p>{data.uid}</p>
+                    <p>{id}</p>
                   </td>
                   <td>
                     <time>{timestampToTableString(data.created)}</time>

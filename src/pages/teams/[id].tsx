@@ -26,8 +26,8 @@ export default function TeamEditPage() {
               <TextInput
                 type="text"
                 name="UID"
-                value={document.uid}
-                onChange={(v) => setDocument({ ...document, uid: v })}
+                value={id}
+                onChange={() => setDocument({ ...document })}
               />
               <SwitchInput
                 name="Jeugd"
@@ -40,7 +40,7 @@ export default function TeamEditPage() {
               <label>Naam</label>
               <p className="input form-input">{document.name}</p>
               <label className="mt-8">UID</label>
-              <p className="input form-input">{document.uid}</p>
+              <p className="input form-input">{id}</p>
             </div>
           )}
 
