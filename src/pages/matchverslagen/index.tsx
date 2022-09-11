@@ -62,7 +62,6 @@ export default function MatchReportPage() {
                 <th>Team</th>
                 <th>Tegenstander</th>
                 <th>Datum</th>
-                <th>Tijd</th>
                 <th>Publiceren</th>
                 <th>Acities</th>
               </tr>
@@ -74,9 +73,6 @@ export default function MatchReportPage() {
                   <td className="font-bold">{getOpponentNameById(data.opponentId)}</td>
                   <td>
                     <time>{timestampToString(data.time, 'DD/MM')}</time>
-                  </td>
-                  <td>
-                    <time>{timestampToString(data.time, 'HH:mm')}</time>
                   </td>
                   <td>
                     <SwitchHandler
