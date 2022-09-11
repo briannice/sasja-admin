@@ -14,7 +14,7 @@ import {
   OpponentDocument,
   TeamDocument,
 } from '@/types/documents'
-import { timestampToString, timestampToTableString } from '@/utils/date'
+import { timestampToString } from '@/utils/date'
 import { FirestoreError } from 'firebase/firestore'
 import Head from 'next/head'
 import React from 'react'
@@ -52,6 +52,8 @@ export default function MatchReportPage() {
         name="Matchverslagen"
         errs={errors}
         loading={!teams || !opponents}
+        orderField="time"
+        orderDirection="desc"
       >
         {({ deleteHandler, documents }) => (
           <table>
@@ -60,8 +62,7 @@ export default function MatchReportPage() {
                 <th>Team</th>
                 <th>Tegenstander</th>
                 <th>Datum</th>
-                <th>Created</th>
-                <th>Updated</th>
+                <th>Tijd</th>
                 <th>Publiceren</th>
                 <th>Acities</th>
               </tr>
@@ -75,10 +76,7 @@ export default function MatchReportPage() {
                     <time>{timestampToString(data.time, 'DD/MM')}</time>
                   </td>
                   <td>
-                    <time>{timestampToTableString(data.created)}</time>
-                  </td>
-                  <td>
-                    <time>{timestampToTableString(data.updated)}</time>
+                    <time>{timestampToString(data.time, 'HH:mm')}</time>
                   </td>
                   <td>
                     <SwitchHandler

@@ -3,7 +3,6 @@ import OverviewCollection from '@/components/hoc/OverviewCollection'
 import SwitchHandler from '@/components/SwitchHandler'
 import { COL_PLAYERS, DOC_PLAYERS } from '@/services/firebase/firestore'
 import { PlayerDocument, PlayerDocumentData } from '@/types/documents'
-import { timestampToTableString } from '@/utils/date'
 import Head from 'next/head'
 import React from 'react'
 
@@ -17,14 +16,14 @@ export default function PlayersOverviewPage() {
         col={COL_PLAYERS}
         create={DOC_PLAYERS}
         name="Spelers"
+        orderField="lastname"
       >
         {({ deleteHandler, documents }) => (
           <table>
             <thead>
               <tr>
-                <th>Naam</th>
-                <th>Created</th>
-                <th>Updated</th>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
                 <th>Publiceren</th>
                 <th>Acties</th>
               </tr>
@@ -33,13 +32,10 @@ export default function PlayersOverviewPage() {
               {documents.map(({ id, data }, i) => (
                 <tr key={i}>
                   <td>
-                    <p>{`${data.firstname} ${data.lastname}`}</p>
+                    <p>{data.firstname}</p>
                   </td>
                   <td>
-                    <time>{timestampToTableString(data.created)}</time>
-                  </td>
-                  <td>
-                    <time>{timestampToTableString(data.updated)}</time>
+                    <p>{data.lastname}</p>
                   </td>
                   <td>
                     <SwitchHandler col={COL_PLAYERS} id={id} initial={data.public} name="public" />

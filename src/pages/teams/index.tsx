@@ -1,8 +1,7 @@
 import ActionButtons from '@/components/ActionButtons'
 import OverviewCollection from '@/components/hoc/OverviewCollection'
-import { COL_TEAMS, DOC_TEAMS } from '@/services/firebase/firestore'
+import { COL_TEAMS } from '@/services/firebase/firestore'
 import { TeamDocument, TeamDocumentData } from '@/types/documents'
-import { timestampToTableString } from '@/utils/date'
 import Head from 'next/head'
 import React from 'react'
 
@@ -14,8 +13,8 @@ export default function TeamOverviewPage() {
       </Head>
       <OverviewCollection<TeamDocument, TeamDocumentData>
         col={COL_TEAMS}
-        create={DOC_TEAMS}
         name="Teams"
+        orderField="name"
       >
         {({ deleteHandler, documents }) => (
           <>
@@ -24,8 +23,6 @@ export default function TeamOverviewPage() {
                 <tr>
                   <th>Naam</th>
                   <th>UID</th>
-                  <th>Created</th>
-                  <th>Updated</th>
                   <th>Acties</th>
                 </tr>
               </thead>
@@ -37,12 +34,6 @@ export default function TeamOverviewPage() {
                     </td>
                     <td>
                       <p>{id}</p>
-                    </td>
-                    <td>
-                      <time>{timestampToTableString(data.created)}</time>
-                    </td>
-                    <td>
-                      <time>{timestampToTableString(data.updated)}</time>
                     </td>
                     <td>
                       <ActionButtons deleteHandler={deleteHandler} i={i} url={`/teams/${id}`} />

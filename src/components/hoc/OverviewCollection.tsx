@@ -33,6 +33,8 @@ type Props<T, U> = {
   create?: U | null
   errs?: FirestoreError[]
   loading?: boolean
+  orderField?: string
+  orderDirection?: 'asc' | 'desc'
 }
 
 export default function OverviewCollection<T extends BaseDocument<U>, U extends BaseDocumentData>({
@@ -42,6 +44,8 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
   create = null,
   errs = [],
   loading = false,
+  orderField = 'updated',
+  orderDirection = 'asc',
 }: Props<T, U>) {
   // List of documents of the given collection or null if no documents are fetched.
   const [documents, setDocuments] = useState<T[] | null>(null)
@@ -60,7 +64,7 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
 
   // Load initial documents
   useEffect(() => {
-    getDocs(query(collection(db, col), orderBy('updated', 'desc'), limit(PAGE_SIZE)))
+    getDocs(query(collection(db, col), orderBy(orderField, orderDirection), limit(PAGE_SIZE)))
       .then((docs) => {
         const result = docs.docs.map(
           (doc) => ({ id: doc.id, data: { ...doc.data() } } as unknown as T)
@@ -70,7 +74,7 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
         setHasMoreDocuments(result.length === PAGE_SIZE)
       })
       .catch((err: FirestoreError) => setErrors((errors) => [...errors, err]))
-  }, [col, loading])
+  }, [col, loading, orderField, orderDirection])
 
   // If there are errors, return error page.
   if (errors.length > 0) return <Error firestoreErrors={errors} />

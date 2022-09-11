@@ -42,7 +42,7 @@
   }
 
   table time {
-    @apply text-dark;
+    @apply font-kanit text-dark;
   }
 
   [type='text'],

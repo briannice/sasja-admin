@@ -2,7 +2,6 @@ import ActionButtons from '@/components/ActionButtons'
 import OverviewCollection from '@/components/hoc/OverviewCollection'
 import { COL_OPPONENTS, DOC_OPPONENT } from '@/services/firebase/firestore'
 import { OpponentDocument, OpponentDocumentData } from '@/types/documents'
-import { timestampToTableString } from '@/utils/date'
 import Head from 'next/head'
 import React from 'react'
 
@@ -16,6 +15,7 @@ export default function OpponentsPage() {
         col={COL_OPPONENTS}
         create={DOC_OPPONENT}
         name="Tegenstanders"
+        orderField="name"
       >
         {({ deleteHandler, documents }) => (
           <table>
@@ -23,8 +23,6 @@ export default function OpponentsPage() {
               <tr>
                 <th>Naam</th>
                 <th>Korte naam</th>
-                <th>Created</th>
-                <th>Updated</th>
                 <th>Acties</th>
               </tr>
             </thead>
@@ -33,12 +31,6 @@ export default function OpponentsPage() {
                 <tr key={id}>
                   <td className="font-bold">{data.name}</td>
                   <td className="font-bold">{data.short}</td>
-                  <td>
-                    <time>{timestampToTableString(data.created)}</time>
-                  </td>
-                  <td>
-                    <time>{timestampToTableString(data.updated)}</time>
-                  </td>
                   <td>
                     <ActionButtons
                       deleteHandler={deleteHandler}
