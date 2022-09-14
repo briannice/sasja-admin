@@ -51,7 +51,12 @@ export default function NewsOverviewPage() {
                     <SwitchHandler col={COL_NEWS} id={id} initial={data.pinned} name="pinned" />
                   </td>
                   <td>
-                    <ActionButtons deleteHandler={deleteHandler} i={i} url={`/nieuws/${id}`} />
+                    <ActionButtons
+                      deleteHandler={deleteHandler}
+                      i={i}
+                      urlEdit={`/nieuws/${id}`}
+                      urlView={`/nieuws/${id}`}
+                    />
                   </td>
                 </tr>
               ))}

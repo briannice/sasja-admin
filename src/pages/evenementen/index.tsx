@@ -47,7 +47,12 @@ export default function EventOverviewPage() {
                     <SwitchHandler col={COL_EVENTS} id={id} initial={data.public} name="public" />
                   </td>
                   <td>
-                    <ActionButtons deleteHandler={deleteHandler} i={i} url={`/evenement/${id}`} />
+                    <ActionButtons
+                      deleteHandler={deleteHandler}
+                      i={i}
+                      urlEdit={`/evenementen/${id}`}
+                      urlView={`/evenement/${id}`}
+                    />
                   </td>
                 </tr>
               ))}

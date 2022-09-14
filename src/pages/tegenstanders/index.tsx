@@ -35,7 +35,9 @@ export default function OpponentsPage() {
                     <ActionButtons
                       deleteHandler={deleteHandler}
                       i={i}
-                      url={`/tegenstanders/${id}`}
+                      urlEdit={`/tegenstanders/${id}`}
+                      urlView={`/tegenstanders/${id}`}
+                      canView={false}
                     />
                   </td>
                 </tr>
