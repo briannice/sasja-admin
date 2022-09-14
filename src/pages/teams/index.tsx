@@ -39,7 +39,8 @@ export default function TeamOverviewPage() {
                       <ActionButtons
                         deleteHandler={deleteHandler}
                         i={i}
-                        url={`/teams/${id}`}
+                        urlEdit={`/teams/${id}`}
+                        urlView={`/team/${id}`}
                         canDelete={false}
                       />
                     </td>

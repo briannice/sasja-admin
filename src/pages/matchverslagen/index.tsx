@@ -86,7 +86,8 @@ export default function MatchReportPage() {
                     <ActionButtons
                       deleteHandler={deleteHandler}
                       i={i}
-                      url={`/matchverslagen/${id}`}
+                      urlEdit={`/matchverslagen/${id}`}
+                      urlView={`/matchverslag/${id}`}
                     />
                   </td>
                 </tr>

@@ -41,7 +41,13 @@ export default function PlayersOverviewPage() {
                     <SwitchHandler col={COL_PLAYERS} id={id} initial={data.public} name="public" />
                   </td>
                   <td>
-                    <ActionButtons deleteHandler={deleteHandler} i={i} url={`/spelers/${id}`} />
+                    <ActionButtons
+                      deleteHandler={deleteHandler}
+                      i={i}
+                      urlEdit={`/spelers/${id}`}
+                      urlView={`/spelers/${id}`}
+                      canView={false}
+                    />
                   </td>
                 </tr>
               ))}

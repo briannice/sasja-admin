@@ -7,7 +7,8 @@ import { RiCloseLine, RiDeleteBinLine, RiEditLine, RiExternalLinkLine } from 're
 type Props = {
   deleteHandler: (i: number) => void
   i: number
-  url: string
+  urlEdit: string
+  urlView: string
   canDelete?: boolean
   canEdit?: boolean
   canView?: boolean
@@ -16,7 +17,8 @@ type Props = {
 export default function ActionButtons({
   deleteHandler,
   i,
-  url,
+  urlEdit,
+  urlView,
   canDelete = true,
   canEdit = true,
   canView = true,
@@ -27,12 +29,12 @@ export default function ActionButtons({
     <>
       <div className="flex items-center space-x-2">
         {canView && (
-          <ExternalLink href={url} className="btn btn-icon-sm btn-info">
+          <ExternalLink href={urlView} className="btn btn-icon-sm btn-info">
             <RiExternalLinkLine />
           </ExternalLink>
         )}
         {canEdit && (
-          <Link href={url} className="btn btn-icon-sm btn-warning">
+          <Link href={urlEdit} className="btn btn-icon-sm btn-warning">
             <RiEditLine />
           </Link>
         )}
