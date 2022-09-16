@@ -19,7 +19,7 @@ import { useRouter } from 'next/router'
 import React, { MouseEventHandler, ReactNode, useEffect, useState } from 'react'
 import { RiAddLine, RiArrowLeftSLine, RiMoreLine } from 'react-icons/ri'
 
-const PAGE_SIZE = 10
+const PAGE_SIZE = 2
 
 type RenderProps<T> = {
   deleteHandler: (i: number) => void
@@ -102,11 +102,21 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
   const loadMoreHandler: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
     if (documents.length <= 0) return
-    const lastUpdated = documents[documents.length - 1].data.updated
+
+    const lastDocument = documents[documents.length - 1]
+    let lastUpdated: any = null
+    Object.entries(lastDocument.data).find(([key, value]) => {
+      if (key === orderField) {
+        lastUpdated = value
+      }
+    })
+
+    if (!lastUpdated) return
+
     getDocs(
       query(
         collection(db, col),
-        orderBy('updated', 'desc'),
+        orderBy(orderField, orderDirection),
         startAfter(lastUpdated),
         limit(PAGE_SIZE)
       )
