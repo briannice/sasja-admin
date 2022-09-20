@@ -2,6 +2,7 @@ import ActionButtons from '@/components/ActionButtons'
 import OverviewCollection from '@/components/hoc/OverviewCollection'
 import SwitchHandler from '@/components/SwitchHandler'
 import useCollection from '@/hooks/useCollection'
+import { db } from '@/services/firebase'
 import {
   COL_MATCHREPORT,
   COL_OPPONENTS,
@@ -15,7 +16,7 @@ import {
   TeamDocument,
 } from '@/types/documents'
 import { timestampToString } from '@/utils/date'
-import { FirestoreError } from 'firebase/firestore'
+import { doc, FirestoreError, updateDoc } from 'firebase/firestore'
 import Head from 'next/head'
 import React from 'react'
 
@@ -41,6 +42,9 @@ export default function MatchReportPage() {
   if (errorTeams) errors.push(errorTeams)
   if (errorOpponents) errors.push(errorOpponents)
 
+  const getTeamById = (id: string) => teams?.find((team) => team.id === id)
+  const getOpponentById = (id: string) => opponents?.find((opponent) => opponent.id === id)
+
   return (
     <>
       <Head>
@@ -56,44 +60,70 @@ export default function MatchReportPage() {
         orderDirection="desc"
       >
         {({ deleteHandler, documents }) => (
-          <table>
-            <thead>
-              <tr>
-                <th>Team</th>
-                <th>Tegenstander</th>
-                <th>Datum</th>
-                <th>Publiceren</th>
-                <th>Acities</th>
-              </tr>
-            </thead>
-            <tbody>
-              {documents.map(({ data, id }, i) => (
-                <tr key={id}>
-                  <td className="font-bold">{getTeamNameById(data.teamId)}</td>
-                  <td className="font-bold">{getOpponentNameById(data.opponentId)}</td>
-                  <td>
-                    <time>{timestampToString(data.time, 'DD/MM')}</time>
-                  </td>
-                  <td>
-                    <SwitchHandler
-                      col={COL_MATCHREPORT}
-                      id={id}
-                      initial={data.public}
-                      name="public"
-                    />
-                  </td>
-                  <td>
-                    <ActionButtons
-                      deleteHandler={deleteHandler}
-                      i={i}
-                      urlEdit={`/matchverslagen/${id}`}
-                      urlView={`/matchverslag/${id}`}
-                    />
-                  </td>
+          <>
+            <div>
+              <button
+                onClick={() => {
+                  documents.forEach((document) => {
+                    const team = getTeamById(document.data.teamId)
+                    const opponent = getOpponentById(document.data.opponentId)
+                    if (team && opponent) {
+                      updateDoc(doc(db, COL_MATCHREPORT, document.id), {
+                        ...document,
+                        team: { id: team.id, name: team.data.name },
+                        opponent: {
+                          id: opponent.id,
+                          name: opponent.data.name,
+                          short: opponent.data.short,
+                          logo: opponent.data.logo,
+                        },
+                      })
+                    }
+                  })
+                }}
+              >
+                click
+              </button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Team</th>
+                  <th>Tegenstander</th>
+                  <th>Datum</th>
+                  <th>Publiceren</th>
+                  <th>Acities</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {documents.map(({ data, id }, i) => (
+                  <tr key={id}>
+                    <td className="font-bold">{getTeamNameById(data.teamId)}</td>
+                    <td className="font-bold">{getOpponentNameById(data.opponentId)}</td>
+                    <td>
+                      <time>{timestampToString(data.time, 'DD/MM')}</time>
+                    </td>
+                    <td>
+                      <SwitchHandler
+                        col={COL_MATCHREPORT}
+                        id={id}
+                        initial={data.public}
+                        name="public"
+                      />
+                    </td>
+                    <td>
+                      <ActionButtons
+                        deleteHandler={deleteHandler}
+                        i={i}
+                        urlEdit={`/matchverslagen/${id}`}
+                        urlView={`/matchverslag/${id}`}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
         )}
       </OverviewCollection>
     </>

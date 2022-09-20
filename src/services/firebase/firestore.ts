@@ -21,6 +21,18 @@ export const COL_STAFF = 'staff'
 export const FK_TEAMS = 'Geen team'
 export const FK_OPPONENTS = 'Geen tegenstander'
 
+// Default sub documents
+export const MATCHREPORT_TEAM_OBJECT = {
+  id: 'geen-team',
+  name: 'Geen team',
+}
+export const MATCHREPORT_OPPONENT_OBJECT = {
+  id: 'geen-tegenstander',
+  name: 'Geen tegenstander',
+  short: '',
+  logo: '',
+}
+
 // Initial documents
 export const DOC_EVENTS: EventDocumentData = {
   address: '',
@@ -70,14 +82,16 @@ export const DOC_MATCHREPORT: MatchReportDocumentData = {
   content: '',
   created: Timestamp.now(),
   tag: 'COMPETITIE',
-  teamId: FK_TEAMS,
   time: Timestamp.now(),
   updated: Timestamp.now(),
   writer: '',
   home: true,
-  opponentId: 'Geen tegenstander',
   score: [],
   public: false,
+  teamId: FK_TEAMS,
+  opponentId: FK_OPPONENTS,
+  team: MATCHREPORT_TEAM_OBJECT,
+  opponent: MATCHREPORT_OPPONENT_OBJECT,
 }
 
 export const DOC_OPPONENT: OpponentDocumentData = {

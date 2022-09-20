@@ -13,8 +13,16 @@ import {
   COL_TEAMS,
   FK_OPPONENTS,
   FK_TEAMS,
+  MATCHREPORT_OPPONENT_OBJECT,
+  MATCHREPORT_TEAM_OBJECT,
 } from '@/services/firebase/firestore'
-import { MatchReportDocumentData } from '@/types/documents'
+import {
+  MatchReportDocumentData,
+  OpponentDocument,
+  OpponentDocumentData,
+  TeamDocument,
+  TeamDocumentData,
+} from '@/types/documents'
 import Head from 'next/head'
 import React from 'react'
 import { RiAddLine, RiDeleteBinLine } from 'react-icons/ri'
@@ -34,21 +42,26 @@ export default function MatchReportEditPage() {
       <EditDocument<MatchReportDocumentData> col={COL_MATCHREPORT} name="Matchverslag">
         {({ document, id, setDocument }) => (
           <>
-            <SelectCollection
+            <SelectCollection<TeamDocument, TeamDocumentData>
               col={COL_TEAMS}
-              def={FK_TEAMS}
+              def={MATCHREPORT_TEAM_OBJECT}
               field="name"
               name="Team"
-              value={document.teamId}
-              onChange={(v) => setDocument({ ...document, teamId: v })}
+              value={document.team.id}
+              onChange={(v) => setDocument({ ...document, team: { id: v.id, name: v.data.name } })}
             />
-            <SelectCollection
+            <SelectCollection<OpponentDocument, OpponentDocumentData>
               col={COL_OPPONENTS}
-              def={FK_OPPONENTS}
+              def={MATCHREPORT_OPPONENT_OBJECT}
               field="name"
               name="Tegenstander"
-              value={document.opponentId}
-              onChange={(v) => setDocument({ ...document, opponentId: v })}
+              value={document.opponent.id}
+              onChange={(v) =>
+                setDocument({
+                  ...document,
+                  opponent: { id: v.id, logo: v.data.logo, name: v.data.name, short: v.data.short },
+                })
+              }
             />
             <div className="grid grid-cols-2 gap-8">
               <SelectInput

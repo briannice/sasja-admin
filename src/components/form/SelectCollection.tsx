@@ -1,49 +1,46 @@
 import SelectInput from '@/components/form/SelectInput'
-import { db } from '@/services/firebase'
-import { collection, getDocs, orderBy, query } from 'firebase/firestore'
-import React, { useEffect, useState } from 'react'
+import useCollection from '@/hooks/useCollection'
+import { BaseDocument } from '@/types/documents'
+import React from 'react'
 
-type Props = {
+type Props<T, U> = {
   col: string
-  def: string
-  field: string
+  def: any
+  field: keyof U
   name: string
-  onChange: (v: string) => void
+  onChange: (v: T) => void
   value: string
   className?: string | undefined
 }
 
-export default function SelectCollection({
+export default function SelectCollection<T extends BaseDocument<U>, U>({
   col,
-  def,
   field,
+  def,
   name,
   onChange,
   value,
   className,
-}: Props) {
-  const [values, setValues] = useState<{ key: string; value: string }[] | null>(null)
+}: Props<T, U>) {
+  const [documents, error] = useCollection<T>(col)
 
-  useEffect(() => {
-    getDocs(query(collection(db, col), orderBy(field, 'asc')))
-      .then((docs) => {
-        const result = [{ key: def, value: def }]
-        result.push(...docs.docs.map((doc) => ({ key: doc.id, value: doc.data()[field] })))
-        setValues(result)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  }, [col, def, field])
+  if (!documents || error) return <></>
 
-  if (!values) return <></>
+  const createKeysAndValues = () => {
+    const result = [{ key: def.id, value: def[field] }]
+    result.push(...documents.map((doc) => ({ key: doc.id, value: doc.data[field] })))
+    return result
+  }
 
   return (
     <SelectInput
       name={name}
       value={value}
-      onChange={onChange}
-      values={values}
+      onChange={(id) => {
+        const doc = documents.find((doc) => doc.id === id)
+        if (doc) onChange(doc)
+      }}
+      values={createKeysAndValues()}
       className={className}
     />
   )

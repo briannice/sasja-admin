@@ -94,9 +94,19 @@ export type MatchReportDocumentData = BaseDocumentData & {
   home: boolean
   score: { sasja: number; opponent: number }[]
   content: string
-  opponentId: string
-  teamId: string
   public: boolean
+  teamId: string
+  opponentId: string
+  team: {
+    id: string
+    name: string
+  }
+  opponent: {
+    id: string
+    name: string
+    short: string
+    logo: string
+  }
 }
 
 export type MatchReportDocument = BaseDocument<MatchReportDocumentData>
