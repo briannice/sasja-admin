@@ -4,17 +4,12 @@ import ImageInput from '@/components/form/ImageInput'
 import NumberInput from '@/components/form/NumberInput'
 import SelectCollection from '@/components/form/SelectCollection'
 import SelectInput from '@/components/form/SelectInput'
+import SelectOpponent from '@/components/form/SelectOpponent'
 import SwitchInput from '@/components/form/SwitchInput'
 import TextInput from '@/components/form/TextInput'
 import EditDocument from '@/components/hoc/EditDocument'
-import {
-  COL_MATCHREPORT,
-  COL_OPPONENTS,
-  COL_TEAMS,
-  FK_OPPONENTS,
-  FK_TEAMS,
-} from '@/services/firebase/firestore'
-import { MatchReportDocumentData } from '@/types/documents'
+import { COL_MATCHREPORT, COL_TEAMS, MATCHREPORT_TEAM_OBJECT } from '@/services/firebase/firestore'
+import { MatchReportDocumentData, TeamDocument, TeamDocumentData } from '@/types/documents'
 import Head from 'next/head'
 import React from 'react'
 import { RiAddLine, RiDeleteBinLine } from 'react-icons/ri'
@@ -34,21 +29,17 @@ export default function MatchReportEditPage() {
       <EditDocument<MatchReportDocumentData> col={COL_MATCHREPORT} name="Matchverslag">
         {({ document, id, setDocument }) => (
           <>
-            <SelectCollection
+            <SelectCollection<TeamDocument, TeamDocumentData>
               col={COL_TEAMS}
-              def={FK_TEAMS}
+              def={MATCHREPORT_TEAM_OBJECT}
               field="name"
               name="Team"
-              value={document.teamId}
-              onChange={(v) => setDocument({ ...document, teamId: v })}
+              value={document.team.id}
+              onChange={(v) => setDocument({ ...document, team: { id: v.id, name: v.data.name } })}
             />
-            <SelectCollection
-              col={COL_OPPONENTS}
-              def={FK_OPPONENTS}
-              field="name"
-              name="Tegenstander"
-              value={document.opponentId}
-              onChange={(v) => setDocument({ ...document, opponentId: v })}
+            <SelectOpponent
+              value={document.opponent}
+              onChange={(v) => setDocument({ ...document, opponent: v })}
             />
             <div className="grid grid-cols-2 gap-8">
               <SelectInput

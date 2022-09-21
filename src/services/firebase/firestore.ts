@@ -2,10 +2,10 @@ import {
   EventDocumentData,
   MatchReportDocumentData,
   NewsDocumentData,
-  OpponentDocumentData,
   PlayerDocumentData,
   TeamDocumentData,
 } from '@/types/documents'
+import { OpponentModel, TeamModel } from '@/types/models'
 import { Timestamp } from 'firebase/firestore'
 
 // Collection names
@@ -13,13 +13,23 @@ export const COL_EVENTS = 'events'
 export const COL_MATCHREPORT = 'matchreport'
 export const COL_NEWS = 'news'
 export const COL_TEAMS = 'teams'
-export const COL_OPPONENTS = 'opponents'
 export const COL_PLAYERS = 'players'
-export const COL_STAFF = 'staff'
 
 // Defualt foreign keys
 export const FK_TEAMS = 'Geen team'
 export const FK_OPPONENTS = 'Geen tegenstander'
+
+// Default sub documents
+export const MATCHREPORT_TEAM_OBJECT: TeamModel = {
+  id: 'geen-team',
+  name: 'Geen team',
+}
+export const MATCHREPORT_OPPONENT_OBJECT: OpponentModel = {
+  id: -1,
+  name: 'Geen tegenstander',
+  short: '',
+  logo: '',
+}
 
 // Initial documents
 export const DOC_EVENTS: EventDocumentData = {
@@ -70,20 +80,12 @@ export const DOC_MATCHREPORT: MatchReportDocumentData = {
   content: '',
   created: Timestamp.now(),
   tag: 'COMPETITIE',
-  teamId: FK_TEAMS,
   time: Timestamp.now(),
   updated: Timestamp.now(),
   writer: '',
   home: true,
-  opponentId: 'Geen tegenstander',
   score: [],
   public: false,
-}
-
-export const DOC_OPPONENT: OpponentDocumentData = {
-  created: Timestamp.now(),
-  logo: '',
-  name: '',
-  short: '',
-  updated: Timestamp.now(),
+  team: MATCHREPORT_TEAM_OBJECT,
+  opponent: MATCHREPORT_OPPONENT_OBJECT,
 }
