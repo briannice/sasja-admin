@@ -10,22 +10,25 @@ type Props = {
 
 export default function SelectOpponent({ onChange, value }: Props) {
   const [opponents, setOpponents] = useState<OpponentModel[]>([])
-  const [selectedOpponents, setSelectedOpponents] = useState<OpponentModel[]>(opponents)
+  const [selectedOpponents, setSelectedOpponents] = useState<OpponentModel[]>([...opponents])
   const [showPopup, setShowPopup] = useState(false)
 
   useEffect(() => {
-    getHandballBelgiumClubs().then((clubs) => setOpponents([...clubs]))
+    getHandballBelgiumClubs().then((clubs) => {
+      setOpponents([...clubs])
+      setSelectedOpponents([...clubs])
+    })
   }, [])
 
   const onChangeFilterHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
     const filter = e.target.value
-    setSelectedOpponents(
-      opponents.filter(
+    setSelectedOpponents([
+      ...opponents.filter(
         (opponent) =>
           opponent.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
           opponent.short.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
-      )
-    )
+      ),
+    ])
   }
 
   return (

@@ -85,8 +85,6 @@ export type MatchReportDocumentData = BaseDocumentData & {
   score: ScoreModel[]
   content: string
   public: boolean
-  teamId: string
-  opponentId: string
   team: TeamModel
   opponent: OpponentModel
 }
