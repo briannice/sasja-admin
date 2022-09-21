@@ -2,7 +2,7 @@ export type OpponentModel = {
   id: number
   name: string
   short: string
-  logo: string
+  logo: string | null
 }
 
 export type ScoreModel = {

@@ -29,6 +29,7 @@
     "@tiptap/extension-text": "^2.0.0-beta.17",
     "@tiptap/extension-underline": "^2.0.0-beta.25",
     "@tiptap/react": "^2.0.0-beta.114",
+    "axios": "^0.27.2",
     "clsx": "^1.2.1",
     "core-js": "^3.24.1",
     "firebase": "^9.9.2",
