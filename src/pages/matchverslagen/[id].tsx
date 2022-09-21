@@ -11,8 +11,6 @@ import {
   COL_MATCHREPORT,
   COL_OPPONENTS,
   COL_TEAMS,
-  FK_OPPONENTS,
-  FK_TEAMS,
   MATCHREPORT_OPPONENT_OBJECT,
   MATCHREPORT_TEAM_OBJECT,
 } from '@/services/firebase/firestore'

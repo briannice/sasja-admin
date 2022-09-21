@@ -1,3 +1,4 @@
+import { OpponentModel, ScoreModel, TeamModel } from '@/types/models'
 import { Timestamp } from 'firebase/firestore'
 
 // ---------------------------------------------------------------------------------------------- //
@@ -74,17 +75,6 @@ export type NewsDocumentData = BaseDocumentData & {
 export type NewsDocument = BaseDocument<NewsDocumentData>
 
 // ---------------------------------------------------------------------------------------------- //
-//                                          OPPONENT                                              //
-// ---------------------------------------------------------------------------------------------- //
-export type OpponentDocumentData = BaseDocumentData & {
-  name: string
-  short: string
-  logo: string
-}
-
-export type OpponentDocument = BaseDocument<OpponentDocumentData>
-
-// ---------------------------------------------------------------------------------------------- //
 //                                        MATCHREPORT                                             //
 // ---------------------------------------------------------------------------------------------- //
 export type MatchReportDocumentData = BaseDocumentData & {
@@ -92,21 +82,13 @@ export type MatchReportDocumentData = BaseDocumentData & {
   tag: string
   writer: string
   home: boolean
-  score: { sasja: number; opponent: number }[]
+  score: ScoreModel[]
   content: string
   public: boolean
   teamId: string
   opponentId: string
-  team: {
-    id: string
-    name: string
-  }
-  opponent: {
-    id: string
-    name: string
-    short: string
-    logo: string
-  }
+  team: TeamModel
+  opponent: OpponentModel
 }
 
 export type MatchReportDocument = BaseDocument<MatchReportDocumentData>
