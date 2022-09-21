@@ -7,7 +7,7 @@ if (!apiToken) {
 }
 
 export const HandballBelgiumApi = axios.create({
-  baseURL: 'https://admin.handballbelgium.be/lms_league_ws/public/api/v3/',
+  baseURL: 'https://admin.handballbelgium.be/lms_league_ws/public/api/v1/',
   timeout: 10000,
   headers: { authorization: apiToken },
 })

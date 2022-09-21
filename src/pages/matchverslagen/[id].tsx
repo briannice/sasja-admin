@@ -4,6 +4,7 @@ import ImageInput from '@/components/form/ImageInput'
 import NumberInput from '@/components/form/NumberInput'
 import SelectCollection from '@/components/form/SelectCollection'
 import SelectInput from '@/components/form/SelectInput'
+import SelectOpponent from '@/components/form/SelectOpponent'
 import SwitchInput from '@/components/form/SwitchInput'
 import TextInput from '@/components/form/TextInput'
 import EditDocument from '@/components/hoc/EditDocument'
@@ -48,18 +49,9 @@ export default function MatchReportEditPage() {
               value={document.team.id}
               onChange={(v) => setDocument({ ...document, team: { id: v.id, name: v.data.name } })}
             />
-            <SelectCollection<OpponentDocument, OpponentDocumentData>
-              col={COL_OPPONENTS}
-              def={MATCHREPORT_OPPONENT_OBJECT}
-              field="name"
-              name="Tegenstander"
-              value={document.opponent.id}
-              onChange={(v) =>
-                setDocument({
-                  ...document,
-                  opponent: { id: v.id, logo: v.data.logo, name: v.data.name, short: v.data.short },
-                })
-              }
+            <SelectOpponent
+              value={document.opponent}
+              onChange={(v) => setDocument({ ...document, opponent: v })}
             />
             <div className="grid grid-cols-2 gap-8">
               <SelectInput
