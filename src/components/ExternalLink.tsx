@@ -7,7 +7,7 @@ type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
 }
 
 export default function ExternalLink({ children, href, domain, ...props }: Props) {
-  if (!domain) domain = 'public.sasja-antwerpen.be'
+  if (!domain) domain = 'www.sasja-antwerpen.be'
   return (
     <a href={`https://${domain}${href}`} target="_blank" rel="noreferrer" {...props}>
       {children}
