@@ -33,7 +33,7 @@ type Props<T, U> = {
   create?: U | null
   errs?: FirestoreError[]
   loading?: boolean
-  orderField?: string
+  orderField?: keyof U
   orderDirection?: 'asc' | 'desc'
 }
 
@@ -64,7 +64,9 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
 
   // Load initial documents
   useEffect(() => {
-    getDocs(query(collection(db, col), orderBy(orderField, orderDirection), limit(PAGE_SIZE)))
+    getDocs(
+      query(collection(db, col), orderBy(orderField as string, orderDirection), limit(PAGE_SIZE))
+    )
       .then((docs) => {
         const result = docs.docs.map(
           (doc) => ({ id: doc.id, data: { ...doc.data() } } as unknown as T)
@@ -103,20 +105,11 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
     e.preventDefault()
     if (documents.length <= 0) return
 
-    const lastDocument = documents[documents.length - 1]
-    let lastUpdated: any = null
-    Object.entries(lastDocument.data).find(([key, value]) => {
-      if (key === orderField) {
-        lastUpdated = value
-      }
-    })
-
-    if (!lastUpdated) return
-
+    const lastUpdated = documents[documents.length - 1]['data'][orderField]
     getDocs(
       query(
         collection(db, col),
-        orderBy(orderField, orderDirection),
+        orderBy(orderField as string, orderDirection),
         startAfter(lastUpdated),
         limit(PAGE_SIZE)
       )
