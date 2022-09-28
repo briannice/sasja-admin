@@ -27,7 +27,7 @@ export default function EventOverviewPage() {
                 <th>Naam</th>
                 <th>Datum</th>
                 <th>Tijd</th>
-                <th>Created</th>
+                <th>Publiceren</th>
                 <th>Acties</th>
               </tr>
             </thead>
