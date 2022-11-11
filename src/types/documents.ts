@@ -54,8 +54,7 @@ export type PlayerDocumentData = BaseDocumentData & {
   birthday: Timestamp
   registration: Timestamp
   public: boolean
-
-  teamId: string
+  team: TeamModel
 }
 
 export type PlayerDocument = BaseDocument<PlayerDocumentData>

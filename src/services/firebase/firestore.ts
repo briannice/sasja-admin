@@ -24,6 +24,12 @@ export const MATCHREPORT_TEAM_OBJECT: TeamModel = {
   id: 'geen-team',
   name: 'Geen team',
 }
+
+export const PLAYER_TEAM_OBJECT: TeamModel = {
+  id: 'geen-team',
+  name: 'Geen team',
+}
+
 export const MATCHREPORT_OPPONENT_OBJECT: OpponentModel = {
   id: -1,
   name: 'Geen tegenstander',
@@ -72,7 +78,7 @@ export const DOC_PLAYERS: PlayerDocumentData = {
   position: '',
   public: false,
   registration: Timestamp.now(),
-  teamId: FK_TEAMS,
+  team: PLAYER_TEAM_OBJECT,
   updated: Timestamp.now(),
 }
 
