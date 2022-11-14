@@ -6,7 +6,7 @@ import SelectCollection from '@/components/form/SelectCollection'
 import SwitchInput from '@/components/form/SwitchInput'
 import TextInput from '@/components/form/TextInput'
 import EditDocument from '@/components/hoc/EditDocument'
-import { COL_PLAYERS, COL_TEAMS, FK_TEAMS } from '@/services/firebase/firestore'
+import { COL_PLAYERS, COL_TEAMS, PLAYER_TEAM_OBJECT } from '@/services/firebase/firestore'
 import { PlayerDocumentData, TeamDocument, TeamDocumentData } from '@/types/documents'
 import Head from 'next/head'
 import React from 'react'
@@ -50,11 +50,13 @@ export default function PlayerEditPage() {
               />
               <SelectCollection<TeamDocument, TeamDocumentData>
                 col={COL_TEAMS}
-                def={FK_TEAMS}
+                def={PLAYER_TEAM_OBJECT}
                 field="name"
                 name="Team"
-                value={document.teamId}
-                onChange={(v) => setDocument({ ...document, teamId: v.id })}
+                value={document.team.id}
+                onChange={(v) =>
+                  setDocument({ ...document, team: { id: v.id, name: v.data.name } })
+                }
               />
               <SwitchInput
                 name="Publiceren"
