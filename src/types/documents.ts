@@ -34,6 +34,7 @@ export type EventDocument = BaseDocument<EventDocumentData>
 export type TeamDocumentData = BaseDocumentData & {
   name: string
   youth: boolean
+  vhvId: number
   competitions: {
     name: string
     serieId: number

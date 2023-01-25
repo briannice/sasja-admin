@@ -46,6 +46,8 @@ export default function TeamEditPage() {
                 <p className="input form-input">{document.name}</p>
                 <label className="mt-8">UID</label>
                 <p className="input form-input">{id}</p>
+                <label className="mt-8">VHV ID</label>
+                <p className="input form-input">{document.vhvId}</p>
               </div>
             )}
 
