@@ -18,6 +18,7 @@ const tags = [
   { key: 'COMPETITIE', value: 'Competitie' },
   { key: 'BEKER', value: 'Beker' },
   { key: 'VRIENDSCHAPPELIJK', value: 'Vriendschappelijk' },
+  { key: 'TORNOOI', value: 'Tornooi' },
 ]
 
 export default function MatchReportEditPage() {

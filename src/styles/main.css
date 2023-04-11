@@ -247,6 +247,10 @@
     @apply border border-medium p-3 text-left;
   }
 
+  .text-editor iframe {
+    @apply mx-auto mt-4;
+  }
+
   /* --------- */
   /* SCROLLBAR */
   /* --------- */

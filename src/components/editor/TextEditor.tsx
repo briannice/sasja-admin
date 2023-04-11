@@ -1,6 +1,7 @@
 import HistoryButtons from '@/components/editor/buttons/HistoryButtons'
 import ListButtons from '@/components/editor/buttons/ListButtons'
 import MarkButtons from '@/components/editor/buttons/MarkButtons'
+import SocialMediaButtons from '@/components/editor/buttons/SocialMediaButtons'
 import TableButtons from '@/components/editor/buttons/TableButtons'
 import TextButtons from '@/components/editor/buttons/TextButtons'
 import Bold from '@tiptap/extension-bold'
@@ -20,6 +21,7 @@ import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
 import Text from '@tiptap/extension-text'
 import Underline from '@tiptap/extension-underline'
+import Youtube from '@tiptap/extension-youtube'
 import { EditorContent, useEditor } from '@tiptap/react'
 import clsx from 'clsx'
 import React, { useEffect } from 'react'
@@ -50,6 +52,7 @@ export default function TextEditor({ onChange, value, className }: Props) {
       TableRow,
       Text,
       Underline,
+      Youtube,
     ],
 
     content: value,
@@ -83,6 +86,7 @@ export default function TextEditor({ onChange, value, className }: Props) {
           <MarkButtons editor={editor} />
           <ListButtons editor={editor} />
           <TableButtons editor={editor} />
+          <SocialMediaButtons editor={editor} />
         </div>
         <div className="overflow-y-scroll">
           <EditorContent editor={editor} />
