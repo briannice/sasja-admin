@@ -1,5 +1,4 @@
 import TextEditor from '@/components/editor/TextEditor'
-import DateInput from '@/components/form/DateInput'
 import ImageInput from '@/components/form/ImageInput'
 import NumberInput from '@/components/form/NumberInput'
 import SelectCollection from '@/components/form/SelectCollection'
@@ -37,16 +36,6 @@ export default function PlayerEditPage() {
                 name="Rugnummer"
                 value={document.backNumber}
                 onChange={(v) => setDocument({ ...document, backNumber: v })}
-              />
-              <DateInput
-                name="Geboortedatum"
-                value={document.birthday}
-                onChange={(v) => setDocument({ ...document, birthday: v })}
-              />
-              <DateInput
-                name="Inschrijvingsdatum"
-                value={document.registration}
-                onChange={(v) => setDocument({ ...document, registration: v })}
               />
               <SelectCollection<TeamDocument, TeamDocumentData>
                 col={COL_TEAMS}
