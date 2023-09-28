@@ -23,7 +23,6 @@ export default function TeamOverviewPage() {
                 <tr>
                   <th>Naam</th>
                   <th>UID</th>
-                  <th>VHV ID</th>
                   <th>Acties</th>
                 </tr>
               </thead>
@@ -36,9 +35,7 @@ export default function TeamOverviewPage() {
                     <td>
                       <p>{id}</p>
                     </td>
-                    <td>
-                      <p>{data.vhvId}</p>
-                    </td>
+
                     <td>
                       <ActionButtons
                         deleteHandler={deleteHandler}
