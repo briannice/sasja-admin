@@ -46,21 +46,19 @@ export default function TeamEditPage() {
                 <p className="input form-input">{document.name}</p>
                 <label className="mt-8">UID</label>
                 <p className="input form-input">{id}</p>
-                <label className="mt-8">VHV ID</label>
-                <p className="input form-input">{document.vhvId}</p>
               </div>
             )}
 
             <ImageInput id={id} name="Ploegfoto" path={COL_TEAMS} />
 
             <div className="col-span-2">
-              <div className="flex items-center justify-between border-y border-t-primary border-b-medium pt-8 pb-4">
+              <div className="flex items-center justify-between border-y border-b-medium border-t-primary pb-4 pt-8">
                 <p className="font-kanit text-xl text-dark">Competities</p>
                 <button
                   type="button"
                   onClick={(e) => {
                     e.preventDefault()
-                    const newCompetition = { name: '', serieId: 0 }
+                    const newCompetition = { name: '', serieId: 0, vhvId: 0 }
                     setDocument({
                       ...document,
                       competitions: [...document.competitions, newCompetition],
@@ -91,6 +89,16 @@ export default function TeamEditPage() {
                       onChange={(v) => {
                         const competitionsCopy = [...document.competitions]
                         competitionsCopy[i].serieId = v
+                        setDocument({ ...document, competitions: competitionsCopy })
+                      }}
+                      className="flex-1"
+                    />
+                    <NumberInput
+                      name="VHV ID"
+                      value={competition.vhvId}
+                      onChange={(v) => {
+                        const competitionsCopy = [...document.competitions]
+                        competitionsCopy[i].vhvId = v
                         setDocument({ ...document, competitions: competitionsCopy })
                       }}
                       className="flex-1"
