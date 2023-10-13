@@ -38,6 +38,7 @@ export type TeamDocumentData = BaseDocumentData & {
     name: string
     serieId: number
     vhvId: number
+    ranking: boolean
   }[]
 }
 

@@ -58,7 +58,7 @@ export default function TeamEditPage() {
                   type="button"
                   onClick={(e) => {
                     e.preventDefault()
-                    const newCompetition = { name: '', serieId: 0, vhvId: 0 }
+                    const newCompetition = { name: '', serieId: 0, vhvId: 0, ranking: true }
                     setDocument({
                       ...document,
                       competitions: [...document.competitions, newCompetition],
@@ -100,6 +100,16 @@ export default function TeamEditPage() {
                         const competitionsCopy = [...document.competitions]
                         competitionsCopy[i].vhvId = v
                         setDocument({ ...document, competitions: competitionsCopy })
+                      }}
+                      className="flex-1"
+                    />
+                    <SwitchInput
+                      name="Klassement"
+                      value={competition.ranking}
+                      onChange={(v) => {
+                          const competitionsCopy = [...document.competitions]
+                          competitionsCopy[i].ranking = v
+                          setDocument({ ...document, competitions: competitionsCopy })
                       }}
                       className="flex-1"
                     />
