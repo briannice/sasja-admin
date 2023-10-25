@@ -34,6 +34,12 @@ export default function TeamEditPage() {
                   value={id}
                   onChange={() => setDocument({ ...document })}
                 />
+                <TextInput
+                  type="text"
+                  name="Kalender"
+                  value={document.calender}
+                  onChange={(v) => setDocument({ ...document, calender: v })}
+                />
                 <SwitchInput
                   name="Jeugd"
                   value={document.youth}
@@ -46,6 +52,8 @@ export default function TeamEditPage() {
                 <p className="input form-input">{document.name}</p>
                 <label className="mt-8">UID</label>
                 <p className="input form-input">{id}</p>
+                <label className="mt-8">Kalender</label>
+                <p className="input form-input">{document.calender}</p>
               </div>
             )}
 

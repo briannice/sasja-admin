@@ -66,6 +66,7 @@ export const DOC_TEAMS: TeamDocumentData = {
   name: '',
   updated: Timestamp.now(),
   youth: false,
+  calender: '',
 }
 
 export const DOC_PLAYERS: PlayerDocumentData = {
