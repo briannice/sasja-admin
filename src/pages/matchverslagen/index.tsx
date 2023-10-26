@@ -28,7 +28,7 @@ export default function MatchReportPage() {
                 <th>Tegenstander</th>
                 <th>Datum</th>
                 <th>Publiceren</th>
-                <th>Acities</th>
+                <th>Acties</th>
               </tr>
             </thead>
             <tbody>

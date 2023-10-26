@@ -14,7 +14,7 @@ export default function TeamOverviewPage() {
       <OverviewCollection<TeamDocument, TeamDocumentData>
         col={COL_TEAMS}
         name="Teams"
-        orderField="name"
+        orderField="sortOrder"
       >
         {({ deleteHandler, documents }) => (
           <>
