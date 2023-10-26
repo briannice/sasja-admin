@@ -10,7 +10,7 @@ import React from 'react'
 import { RiAddLine, RiDeleteBinLine } from 'react-icons/ri'
 
 export default function TeamEditPage() {
-  const isAdmin = false
+  const isAdmin = true
 
   return (
     <>
@@ -40,6 +40,11 @@ export default function TeamEditPage() {
                   value={document.calender}
                   onChange={(v) => setDocument({ ...document, calender: v })}
                 />
+                <NumberInput
+                  name="Rangorde"
+                  value={document.sortOrder}
+                  onChange={(v) => setDocument({ ...document, sortOrder: v })}
+                />
                 <SwitchInput
                   name="Jeugd"
                   value={document.youth}
@@ -54,6 +59,8 @@ export default function TeamEditPage() {
                 <p className="input form-input">{id}</p>
                 <label className="mt-8">Kalender</label>
                 <p className="input form-input">{document.calender}</p>
+                <label className="mt-8">Rangorde</label>
+                <p className="input form-input">{document.sortOrder}</p>
               </div>
             )}
 

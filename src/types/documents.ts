@@ -35,6 +35,7 @@ export type TeamDocumentData = BaseDocumentData & {
   name: string
   youth: boolean
   calender: string
+  sortOrder: number
   competitions: {
     name: string
     serieId: number
