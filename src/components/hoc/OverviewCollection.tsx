@@ -8,6 +8,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  documentId,
   FirestoreError,
   getDocs,
   limit,
@@ -65,7 +66,7 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
   // Load initial documents
   useEffect(() => {
     getDocs(
-      query(collection(db, col), orderBy(orderField as string, orderDirection), limit(PAGE_SIZE))
+      query(collection(db, col), orderBy(orderField as string, orderDirection), orderBy(documentId()), limit(PAGE_SIZE))
     )
       .then((docs) => {
         const result = docs.docs.map(
@@ -106,11 +107,13 @@ export default function OverviewCollection<T extends BaseDocument<U>, U extends 
     if (documents.length <= 0) return
 
     const lastUpdated = documents[documents.length - 1]['data'][orderField]
+    const docId = documents[documents.length - 1].id
     getDocs(
       query(
         collection(db, col),
         orderBy(orderField as string, orderDirection),
-        startAfter(lastUpdated),
+        orderBy(documentId()),
+        startAfter(lastUpdated, docId),
         limit(PAGE_SIZE)
       )
     )
