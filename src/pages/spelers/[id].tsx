@@ -32,7 +32,8 @@ export default function PlayerEditPage() {
               onChange={(v) => setDocument({ ...document, lastname: v })}
             />
             <div className="space-y-8">
-              <NumberInput
+              <TextInput
+                type="text"
                 name="Rugnummer"
                 value={document.backNumber}
                 onChange={(v) => setDocument({ ...document, backNumber: v })}

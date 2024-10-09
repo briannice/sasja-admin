@@ -54,7 +54,7 @@ export type PlayerDocumentData = BaseDocumentData & {
   lastname: string
   position: string
   description: string
-  backNumber: number
+  backNumber: string
   birthday: Timestamp
   registration: Timestamp
   public: boolean
