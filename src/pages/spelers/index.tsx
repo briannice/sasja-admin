@@ -16,21 +16,25 @@ export default function PlayersOverviewPage() {
         col={COL_PLAYERS}
         create={DOC_PLAYERS}
         name="Spelers"
-        orderField="lastname"
+        orderField="backNumber"
       >
         {({ deleteHandler, documents }) => (
           <table>
             <thead>
-              <tr>
-                <th>Voornaam</th>
-                <th>Achternaam</th>
-                <th>Publiceren</th>
-                <th>Acties</th>
-              </tr>
+            <tr>
+              <th>#</th>
+              <th>Voornaam</th>
+              <th>Achternaam</th>
+              <th>Publiceren</th>
+              <th>Acties</th>
+            </tr>
             </thead>
             <tbody>
               {documents.map(({ id, data }, i) => (
                 <tr key={i}>
+                  <td>
+                    <p>{data.backNumber}</p>
+                  </td>
                   <td>
                     <p>{data.firstname}</p>
                   </td>
