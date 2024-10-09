@@ -1,6 +1,5 @@
 import TextEditor from '@/components/editor/TextEditor'
 import ImageInput from '@/components/form/ImageInput'
-import NumberInput from '@/components/form/NumberInput'
 import SelectCollection from '@/components/form/SelectCollection'
 import SwitchInput from '@/components/form/SwitchInput'
 import TextInput from '@/components/form/TextInput'

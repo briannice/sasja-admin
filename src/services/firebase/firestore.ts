@@ -71,7 +71,7 @@ export const DOC_TEAMS: TeamDocumentData = {
 }
 
 export const DOC_PLAYERS: PlayerDocumentData = {
-  backNumber: 0,
+  backNumber: '',
   birthday: Timestamp.now(),
   created: Timestamp.now(),
   description: '',
