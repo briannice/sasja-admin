@@ -31,15 +31,11 @@ yarn-error.log*
 # vercel
 .vercel
 
-# cloudflare
-.open-next
-.dev.vars
+# netlify
+.netlify
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 .idea
-
-# Local Netlify folder
-.netlify
