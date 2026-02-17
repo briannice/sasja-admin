@@ -26,10 +26,11 @@ jobs:
 
       - name: Deploy
         run: |
+          MSG="${{ github.ref_name }}: ${{ github.event.head_commit.message }}"
           if [ "${{ github.ref_name }}" = "main" ]; then
-            npx netlify deploy --prod
+            npx netlify deploy --prod --message "$MSG"
           else
-            npx netlify deploy
+            npx netlify deploy --alias dev --message "$MSG"
           fi
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
