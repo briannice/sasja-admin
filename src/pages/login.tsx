@@ -49,7 +49,7 @@ export default function LoginPage() {
       <main className="flex h-screen">
         <h1 className="sr-only">Sasja Admin Login</h1>
         <figure className="relative flex-auto">
-          <Image src="/handball-field.jpg" alt="Handball field." layout="fill" objectFit="cover" />
+          <Image src="/handball-field.jpg" alt="Handball field." fill style={{ objectFit: 'cover' }} />
         </figure>
         <section className="flex max-w-xl flex-1 flex-col justify-center bg-white px-8">
           <h2 className="text-5xl">Sasja Admin</h2>

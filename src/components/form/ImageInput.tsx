@@ -77,7 +77,7 @@ export default function ImageInput({ id, name, path, className }: Props) {
             <Loading />
           ) : url ? (
             <>
-              <Image src={url} alt="Image form" layout="fill" objectFit="contain" />
+              <Image src={url} alt="Image form" fill style={{ objectFit: 'contain' }} />
               <button
                 type="button"
                 onClick={deleteImageHandler}

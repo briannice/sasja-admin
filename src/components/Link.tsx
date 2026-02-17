@@ -8,8 +8,8 @@ type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 export default function Link({ children, href, ...props }: Props) {
   return (
-    <NextLink href={href}>
-      <a {...props}>{children}</a>
+    <NextLink href={href} {...props}>
+      {children}
     </NextLink>
   )
 }

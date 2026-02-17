@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="col-span-2 flex items-center rounded-lg bg-white px-8 shadow">
       <figure className="relative aspect-square h-4/5">
-        <Image src="/logo.png" alt="Logo Sasja HC." layout="fill" objectFit="contain" />
+        <Image src="/logo.png" alt="Logo Sasja HC." fill style={{ objectFit: 'contain' }} />
       </figure>
       <span className="ml-8 font-kanit text-2xl">Sasja Admin</span>
 
@@ -19,8 +19,8 @@ export default function Header() {
               <Image
                 src={auth.currentUser.photoURL}
                 alt="User profile picture."
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: 'cover' }}
               />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center bg-light">
