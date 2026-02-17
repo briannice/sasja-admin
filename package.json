@@ -6,13 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
-    "@opennextjs/cloudflare": "^1.16.5",
     "@tiptap/core": "^2.0.2",
     "@tiptap/extension-bold": "^2.0.2",
     "@tiptap/extension-bullet-list": "^2.0.2",
@@ -56,7 +53,6 @@
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "tailwindcss": "^3.1.8",
-    "typescript": "^5.9.3",
-    "wrangler": "^4.66.0"
+    "typescript": "^5.9.3"
   }
 }
